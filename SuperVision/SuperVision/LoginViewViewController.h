@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  LoginViewViewController.h
 //  SuperVision
 //
 //  Created by Ashish ojha on 28/02/15.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface LoginViewViewController : UIViewController
 
 @end
-
