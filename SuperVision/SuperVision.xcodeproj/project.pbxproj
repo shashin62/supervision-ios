@@ -15,6 +15,8 @@
 		B98323A21AA23F6B00770625 /* SuperVisionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B98323A11AA23F6B00770625 /* SuperVisionTests.m */; };
 		B98323AD1AA23FB400770625 /* LoginViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B98323AC1AA23FB400770625 /* LoginViewViewController.m */; };
 		B98323B01AA24FA200770625 /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B98323AF1AA24FA200770625 /* DashboardViewController.m */; };
+		B9A69DD91AA2F95C0058E701 /* PaymentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A69DD81AA2F95C0058E701 /* PaymentsViewController.m */; };
+		B9A69DDC1AA2FFB80058E701 /* AppointmentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A69DDB1AA2FFB80058E701 /* AppointmentsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +45,10 @@
 		B98323AC1AA23FB400770625 /* LoginViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewViewController.m; sourceTree = "<group>"; };
 		B98323AE1AA24FA200770625 /* DashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardViewController.h; sourceTree = "<group>"; };
 		B98323AF1AA24FA200770625 /* DashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardViewController.m; sourceTree = "<group>"; };
+		B9A69DD71AA2F95C0058E701 /* PaymentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentsViewController.h; sourceTree = "<group>"; };
+		B9A69DD81AA2F95C0058E701 /* PaymentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentsViewController.m; sourceTree = "<group>"; };
+		B9A69DDA1AA2FFB80058E701 /* AppointmentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentsViewController.h; sourceTree = "<group>"; };
+		B9A69DDB1AA2FFB80058E701 /* AppointmentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +96,10 @@
 				B98323AC1AA23FB400770625 /* LoginViewViewController.m */,
 				B98323AE1AA24FA200770625 /* DashboardViewController.h */,
 				B98323AF1AA24FA200770625 /* DashboardViewController.m */,
+				B9A69DD71AA2F95C0058E701 /* PaymentsViewController.h */,
+				B9A69DD81AA2F95C0058E701 /* PaymentsViewController.m */,
+				B9A69DDA1AA2FFB80058E701 /* AppointmentsViewController.h */,
+				B9A69DDB1AA2FFB80058E701 /* AppointmentsViewController.m */,
 				B983238F1AA23F6B00770625 /* Main.storyboard */,
 				B98323921AA23F6B00770625 /* Images.xcassets */,
 				B98323941AA23F6B00770625 /* LaunchScreen.xib */,
@@ -224,9 +234,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9A69DDC1AA2FFB80058E701 /* AppointmentsViewController.m in Sources */,
 				B983238B1AA23F6B00770625 /* AppDelegate.m in Sources */,
 				B98323881AA23F6B00770625 /* main.m in Sources */,
 				B98323AD1AA23FB400770625 /* LoginViewViewController.m in Sources */,
+				B9A69DD91AA2F95C0058E701 /* PaymentsViewController.m in Sources */,
 				B98323B01AA24FA200770625 /* DashboardViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -418,6 +430,7 @@
 				B98323A71AA23F6B00770625 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B98323A81AA23F6B00770625 /* Build configuration list for PBXNativeTarget "SuperVisionTests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +439,7 @@
 				B98323AA1AA23F6B00770625 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
