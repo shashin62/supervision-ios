@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface DashboardViewController : UIViewController
+- (IBAction)doLogout:(id)sender;
 
 @end
