@@ -17,6 +17,15 @@
 		B98323B01AA24FA200770625 /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B98323AF1AA24FA200770625 /* DashboardViewController.m */; };
 		B9A69DD91AA2F95C0058E701 /* PaymentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A69DD81AA2F95C0058E701 /* PaymentsViewController.m */; };
 		B9A69DDC1AA2FFB80058E701 /* AppointmentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A69DDB1AA2FFB80058E701 /* AppointmentsViewController.m */; };
+		FB843DFC1AA8255C00F65A36 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = FB843DFB1AA8255C00F65A36 /* MBProgressHUD.m */; };
+		FB843DFE1AA82F0B00F65A36 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB843DFD1AA82F0B00F65A36 /* CoreMedia.framework */; };
+		FB843E001AA82F1100F65A36 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB843DFF1AA82F1100F65A36 /* CoreVideo.framework */; };
+		FB843E021AA82F4200F65A36 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB843E011AA82F4200F65A36 /* AVFoundation.framework */; };
+		FBB17A8E1AA6E1B70016BF5D /* SVLoginRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB17A8D1AA6E1B70016BF5D /* SVLoginRequest.m */; };
+		FBB17A911AA6E1CB0016BF5D /* SVLoginResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB17A901AA6E1CB0016BF5D /* SVLoginResponse.m */; };
+		FBB17A941AA6E1DC0016BF5D /* SVUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB17A931AA6E1DC0016BF5D /* SVUserInfo.m */; };
+		FBB17A971AA6E2090016BF5D /* SVAppoinmentinfo.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB17A961AA6E2090016BF5D /* SVAppoinmentinfo.m */; };
+		FBB17A9A1AA702500016BF5D /* SVNetworkApi.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB17A991AA702500016BF5D /* SVNetworkApi.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +58,22 @@
 		B9A69DD81AA2F95C0058E701 /* PaymentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentsViewController.m; sourceTree = "<group>"; };
 		B9A69DDA1AA2FFB80058E701 /* AppointmentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentsViewController.h; sourceTree = "<group>"; };
 		B9A69DDB1AA2FFB80058E701 /* AppointmentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentsViewController.m; sourceTree = "<group>"; };
+		FB2923BA1AA764A1008A4910 /* SVConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVConstant.h; sourceTree = "<group>"; };
+		FB843DFA1AA8255C00F65A36 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		FB843DFB1AA8255C00F65A36 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		FB843DFD1AA82F0B00F65A36 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		FB843DFF1AA82F1100F65A36 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		FB843E011AA82F4200F65A36 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		FBB17A8C1AA6E1B70016BF5D /* SVLoginRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVLoginRequest.h; sourceTree = "<group>"; };
+		FBB17A8D1AA6E1B70016BF5D /* SVLoginRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVLoginRequest.m; sourceTree = "<group>"; };
+		FBB17A8F1AA6E1CB0016BF5D /* SVLoginResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVLoginResponse.h; sourceTree = "<group>"; };
+		FBB17A901AA6E1CB0016BF5D /* SVLoginResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVLoginResponse.m; sourceTree = "<group>"; };
+		FBB17A921AA6E1DC0016BF5D /* SVUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVUserInfo.h; sourceTree = "<group>"; };
+		FBB17A931AA6E1DC0016BF5D /* SVUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVUserInfo.m; sourceTree = "<group>"; };
+		FBB17A951AA6E2090016BF5D /* SVAppoinmentinfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVAppoinmentinfo.h; sourceTree = "<group>"; };
+		FBB17A961AA6E2090016BF5D /* SVAppoinmentinfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVAppoinmentinfo.m; sourceTree = "<group>"; };
+		FBB17A981AA702500016BF5D /* SVNetworkApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVNetworkApi.h; sourceTree = "<group>"; };
+		FBB17A991AA702500016BF5D /* SVNetworkApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVNetworkApi.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +81,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB843E021AA82F4200F65A36 /* AVFoundation.framework in Frameworks */,
+				FB843E001AA82F1100F65A36 /* CoreVideo.framework in Frameworks */,
+				FB843DFE1AA82F0B00F65A36 /* CoreMedia.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,6 +97,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B97686941AA8EDC1003A7513 /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				FB843E011AA82F4200F65A36 /* AVFoundation.framework */,
+				FB843DFF1AA82F1100F65A36 /* CoreVideo.framework */,
+				FB843DFD1AA82F0B00F65A36 /* CoreMedia.framework */,
+			);
+			name = Framework;
+			sourceTree = "<group>";
+		};
 		B98323791AA23F6B00770625 = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +128,7 @@
 		B98323841AA23F6B00770625 /* SuperVision */ = {
 			isa = PBXGroup;
 			children = (
+				FBB17A8B1AA6E1790016BF5D /* APIClasses */,
 				B98323891AA23F6B00770625 /* AppDelegate.h */,
 				B983238A1AA23F6B00770625 /* AppDelegate.m */,
 				B98323AB1AA23FB400770625 /* LoginViewViewController.h */,
@@ -111,6 +150,7 @@
 		B98323851AA23F6B00770625 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B97686941AA8EDC1003A7513 /* Framework */,
 				B98323861AA23F6B00770625 /* Info.plist */,
 				B98323871AA23F6B00770625 /* main.m */,
 			);
@@ -132,6 +172,26 @@
 				B98323A01AA23F6B00770625 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FBB17A8B1AA6E1790016BF5D /* APIClasses */ = {
+			isa = PBXGroup;
+			children = (
+				FB843DFA1AA8255C00F65A36 /* MBProgressHUD.h */,
+				FB843DFB1AA8255C00F65A36 /* MBProgressHUD.m */,
+				FBB17A8C1AA6E1B70016BF5D /* SVLoginRequest.h */,
+				FBB17A8D1AA6E1B70016BF5D /* SVLoginRequest.m */,
+				FBB17A8F1AA6E1CB0016BF5D /* SVLoginResponse.h */,
+				FBB17A901AA6E1CB0016BF5D /* SVLoginResponse.m */,
+				FBB17A921AA6E1DC0016BF5D /* SVUserInfo.h */,
+				FBB17A931AA6E1DC0016BF5D /* SVUserInfo.m */,
+				FBB17A951AA6E2090016BF5D /* SVAppoinmentinfo.h */,
+				FBB17A961AA6E2090016BF5D /* SVAppoinmentinfo.m */,
+				FBB17A981AA702500016BF5D /* SVNetworkApi.h */,
+				FBB17A991AA702500016BF5D /* SVNetworkApi.m */,
+				FB2923BA1AA764A1008A4910 /* SVConstant.h */,
+			);
+			name = APIClasses;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,9 +295,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				B9A69DDC1AA2FFB80058E701 /* AppointmentsViewController.m in Sources */,
+				FBB17A971AA6E2090016BF5D /* SVAppoinmentinfo.m in Sources */,
 				B983238B1AA23F6B00770625 /* AppDelegate.m in Sources */,
+				FBB17A941AA6E1DC0016BF5D /* SVUserInfo.m in Sources */,
+				FBB17A9A1AA702500016BF5D /* SVNetworkApi.m in Sources */,
 				B98323881AA23F6B00770625 /* main.m in Sources */,
 				B98323AD1AA23FB400770625 /* LoginViewViewController.m in Sources */,
+				FB843DFC1AA8255C00F65A36 /* MBProgressHUD.m in Sources */,
+				FBB17A8E1AA6E1B70016BF5D /* SVLoginRequest.m in Sources */,
+				FBB17A911AA6E1CB0016BF5D /* SVLoginResponse.m in Sources */,
 				B9A69DD91AA2F95C0058E701 /* PaymentsViewController.m in Sources */,
 				B98323B01AA24FA200770625 /* DashboardViewController.m in Sources */,
 			);

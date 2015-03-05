@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *appointmentsBtn;
 @property (weak, nonatomic) IBOutlet UIButton *logoutBtn;
 
+-(void)checkTodayMobileCheckin;
 @end
 
 @implementation DashboardViewController
@@ -39,7 +40,7 @@
     
     self.title = @"Menu";
     [self.navigationItem setHidesBackButton:YES];
-    
+    [self checkTodayMobileCheckin];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,6 +51,12 @@
 - (IBAction)doLogout:(id)sender
 {
     [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+#pragma mark - ManageReportIn Event
+
+-(void)checkTodayMobileCheckin{
+    
 }
 
 
