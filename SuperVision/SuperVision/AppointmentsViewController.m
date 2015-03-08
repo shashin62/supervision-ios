@@ -15,8 +15,9 @@
 
 @interface AppointmentsViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *appointmentTableView;
-@property (strong, nonatomic) NSArray *appointmentArray;
--(void)getAppointmentsFromServer;
+@property (weak, nonatomic) IBOutlet UILabel *officerName;
+
+//-(void)getAppointmentsFromServer;
 @end
 
 @implementation AppointmentsViewController
@@ -30,7 +31,10 @@
     self.appointmentTableView.delegate = self;
     
     self.title = @"Appoitnments";
-    [self getAppointmentsFromServer];
+//    [self getAppointmentsFromServer];
+    SVAppoinmentinfo *appointmentInfoObject = [self.appointmentArray objectAtIndex:0];
+    self.officerName.text = appointmentInfoObject.appointmentOfficer;
+     [self.officerName sizeToFit];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -54,7 +58,7 @@
     return cell;
 }
 
--(CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 44.0f;
 }
 /*
@@ -68,28 +72,28 @@
 */
 
 #pragma mark - Network Action Methods
+//
+//-(void)getAppointmentsFromServer{
+//    AppDelegate *appDelegateObject = (AppDelegate*) [[UIApplication sharedApplication] delegate];
+//    SVNetworkApi *networkApi = [[SVNetworkApi alloc] init];
+//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    [networkApi getAppoinmentList:appDelegateObject.userInfo.uId completionHandler:^(NSArray *output, NSError *error) {
+//        if(error){
+//        UIAlertView *message=[[UIAlertView alloc]initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"ok" otherButtonTitles: nil];
+//        [message show];
+//        }else{
+//            if(output)
+//            self.appointmentArray = output;
+//        }
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [MBProgressHUD hideHUDForView:self.view animated:YES];
+//            [self.appointmentTableView reloadData];
+//        });
+//
+//    }];
+//}
 
--(void)getAppointmentsFromServer{
-    AppDelegate *appDelegateObject = (AppDelegate*) [[UIApplication sharedApplication] delegate];
-    SVNetworkApi *networkApi = [[SVNetworkApi alloc] init];
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [networkApi getAppoinmentList:appDelegateObject.userInfo.uId completionHandler:^(NSArray *output, NSError *error) {
-        if(error){
-        UIAlertView *message=[[UIAlertView alloc]initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"ok" otherButtonTitles: nil];
-        [message show];
-        }else{
-            if(output)
-            self.appointmentArray = output;
-        }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            [self.appointmentTableView reloadData];
-        });
-
-    }];
-}
-
--(NSString*)getDateStringFromFormat:(NSString*)oldFormat ToFormatString:(NSString*)newFormat WithInputDateString:(NSString*)dateString{
+- (NSString*)getDateStringFromFormat:(NSString*)oldFormat ToFormatString:(NSString*)newFormat WithInputDateString:(NSString*)dateString{
     dateString = [dateString stringByReplacingOccurrencesOfString:@"T" withString:@" "];
     NSDateFormatter *dfTime = [[NSDateFormatter alloc] init];
     [dfTime setDateFormat:oldFormat];

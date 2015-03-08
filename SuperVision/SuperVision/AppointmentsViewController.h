@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface AppointmentsViewController : UIViewController 
-
+@property (strong, nonatomic) NSArray *appointmentArray;
 @end

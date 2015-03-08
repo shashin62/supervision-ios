@@ -100,7 +100,7 @@ NSString * const DeviceMode = @"Device";
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [MBProgressHUD hideHUDForView:self.view animated:YES];
                 });
-                UIAlertView *message=[[UIAlertView alloc]initWithTitle:@"Error" message:@"Invalid Username or Password" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles: nil];
+                UIAlertView *message = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Invalid Username or Password" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles: nil];
                 [message show];
             }else{
             AppDelegate *appDelegateObject = (AppDelegate*) [[UIApplication sharedApplication] delegate];
@@ -205,10 +205,10 @@ NSString * const DeviceMode = @"Device";
     CVPixelBufferUnlockBaseAddress(imageBuffer,0);
 }
 
-- (void)setupTimer
-{
-    NSTimer* cameraTimer = [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(snapshot) userInfo:nil repeats:YES];
-}
+//- (void)setupTimer
+//{
+//    NSTimer* cameraTimer = [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(snapshot) userInfo:nil repeats:YES];
+//}
 
 - (void)snapshot
 {

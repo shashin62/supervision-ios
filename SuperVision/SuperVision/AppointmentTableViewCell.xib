@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -13,19 +13,34 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="MobileCheckin - Missed" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VHu-hq-VzC">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MobileCheckin - Missed" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VHu-hq-VzC">
                         <rect key="frame" x="8" y="4" width="304" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="W8B-X3-CBs"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Feb/26/2015 11:46:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gGd-cA-LdV">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feb/26/2015 11:46:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gGd-cA-LdV">
                         <rect key="frame" x="8" y="21" width="298" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="0mf-0g-nGr"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="gGd-cA-LdV" secondAttribute="trailing" constant="14" id="1GT-9v-JHZ"/>
+                    <constraint firstItem="VHu-hq-VzC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="EKn-9V-ohg"/>
+                    <constraint firstItem="gGd-cA-LdV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="GhZ-Mf-eeF"/>
+                    <constraint firstAttribute="bottom" secondItem="VHu-hq-VzC" secondAttribute="bottom" constant="18.5" id="I3j-ut-uXz"/>
+                    <constraint firstItem="VHu-hq-VzC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="MnS-Q6-BiK"/>
+                    <constraint firstAttribute="bottom" secondItem="gGd-cA-LdV" secondAttribute="bottom" constant="1.5" id="mSe-HM-r5A"/>
+                    <constraint firstAttribute="trailing" secondItem="VHu-hq-VzC" secondAttribute="trailing" constant="8" id="yhz-5q-TyW"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="appointmentName" destination="VHu-hq-VzC" id="5uw-qA-v2z"/>
