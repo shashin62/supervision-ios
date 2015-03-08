@@ -16,6 +16,7 @@
 #import <CoreVideo/CoreVideo.h>
 #import <CoreMedia/CoreMedia.h>
 #import <AVFoundation/AVFoundation.h>
+#import "AppDelegate.h"
 
 #if TARGET_IPHONE_SIMULATOR
 NSString * const DeviceMode = @"Simulator";
@@ -77,6 +78,9 @@ NSString * const DeviceMode = @"Device";
 */
 
 -(IBAction)loginActionEvent:(id)sender{
+    
+    if(self.usernameTxt.text.length>0 && self.passwordTxt.text.length>0)
+    {
     SVNetworkApi *networkApi = [[SVNetworkApi alloc] init];
     SVLoginRequest *loginRequest = [[SVLoginRequest alloc] initWithUserName:self.usernameTxt.text password:self.passwordTxt.text];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -91,6 +95,16 @@ NSString * const DeviceMode = @"Device";
             [message show];
         }else{
             
+            if([output.uId isEqualToString:@"0"] || [output.chavi isEqualToString:@"No"])
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                });
+                UIAlertView *message=[[UIAlertView alloc]initWithTitle:@"Error" message:@"Invalid Username or Password" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles: nil];
+                [message show];
+            }else{
+            AppDelegate *appDelegateObject = (AppDelegate*) [[UIApplication sharedApplication] delegate];
+            [appDelegateObject.userInfo setUId:output.uId];
             if([DeviceMode isEqualToString:@"Device"])
                 [self takeAndSendSnapshot];
             else{
@@ -100,15 +114,30 @@ NSString * const DeviceMode = @"Device";
                 [self.navigationController pushViewController:dashboardViewController animated:YES];
                 });
             }
+          }
         }
     }];
+    }else{
+        UIAlertView *message=[[UIAlertView alloc]initWithTitle:@"Error" message:@"Please enter username or password" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles: nil];
+        [message show];
+    }
     
 }
 
 -(void)takeAndSendSnapshot{
     [self setupCamera];
+    SVNetworkApi *networkApi = [[SVNetworkApi alloc] init];
+    NSData *imageData = UIImageJPEGRepresentation(self.cameraImage, 1.0);
     DashboardViewController *dashboardViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"DashBoardViewControllerStoryBoardId"];
+    if(imageData){
+    [networkApi uploadImage:imageData completionHandler:^(NSString *imageName, NSError *error) {
+        [self.navigationController pushViewController:dashboardViewController animated:YES];
+    }];
+    }else
     [self.navigationController pushViewController:dashboardViewController animated:YES];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    });
 }
 
 #pragma mark - Take Snapshot
@@ -175,11 +204,11 @@ NSString * const DeviceMode = @"Device";
     
     CVPixelBufferUnlockBaseAddress(imageBuffer,0);
 }
-//
-//- (void)setupTimer
-//{
-//    NSTimer* cameraTimer = [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(snapshot) userInfo:nil repeats:YES];
-//}
+
+- (void)setupTimer
+{
+    NSTimer* cameraTimer = [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(snapshot) userInfo:nil repeats:YES];
+}
 
 - (void)snapshot
 {

@@ -10,6 +10,7 @@
 
 @interface AppDelegate ()
 
+
 @end
 
 @implementation AppDelegate
@@ -17,7 +18,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
+    self.userInfo = [[SVUserInfo alloc] init];
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0.13 green:0.13 blue:0.13 alpha:1]];
     [[UINavigationBar appearance] setTranslucent:NO];
     
@@ -52,5 +53,51 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+#pragma mark - ShowLoading Indicator
+
+- (void)showLoading:(UIViewController *)viewControllers
+{
+    [self showLoading:viewControllers shouldResizeToViewSize:NO];
+}
+
+- (void)showLoading:(UIViewController *)viewControllers shouldResizeToViewSize:(BOOL)shouldResizeToViewSize{
+    [self initilizeLoadingViewWithSizeOfView:shouldResizeToViewSize ? viewControllers.view : nil];
+    [self.loadingIndicator startAnimating];
+    [viewControllers.navigationController.view addSubview:self.loadingView];
+}
+
+- (void)hideLoading {
+    [self initilizeLoadingViewWithSizeOfView:nil];
+    [self.loadingIndicator stopAnimating];
+    [self.loadingView removeFromSuperview];
+}
+
+- (void)initilizeLoadingViewWithSizeOfView:(UIView *)view {
+    
+    CGRect loadingViewSize;
+    
+    if (view) {
+        loadingViewSize = view.bounds;
+        loadingViewSize.size.height += 44 + 20;
+    }
+    else {
+        loadingViewSize = [[UIScreen mainScreen] bounds];
+    }
+    
+    if(!self.loadingView && !self.loadingIndicator) {
+        
+        self.loadingView = [[UIView alloc]initWithFrame:loadingViewSize];
+        [self.loadingView setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.7]];
+        self.loadingIndicator = [[UIActivityIndicatorView alloc] init];
+        self.loadingIndicator.center = self.loadingView.center;
+        [self.loadingView addSubview:self.loadingIndicator];
+    }
+    else {
+        [self.loadingView setFrame:loadingViewSize];
+        self.loadingIndicator.center = self.loadingView.center;
+    }
+}
+
 
 @end

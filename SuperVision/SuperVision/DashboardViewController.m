@@ -7,16 +7,15 @@
 //
 
 #import "DashboardViewController.h"
-
+#import "AppDelegate.h"
 @interface DashboardViewController ()
-@property (weak, nonatomic) IBOutlet UILabel *notificationLbl;
 
+@property (weak, nonatomic) IBOutlet UILabel *notificationLbl;
 @property (weak, nonatomic) IBOutlet UIView *topView;
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
 @property (weak, nonatomic) IBOutlet UIView *reportView;
 @property (weak, nonatomic) IBOutlet UIView *paymentView;
 @property (weak, nonatomic) IBOutlet UIView *appointmentView;
-
 @property (weak, nonatomic) IBOutlet UIButton *reportInBtn;
 @property (weak, nonatomic) IBOutlet UIButton *paymentsBtn;
 @property (weak, nonatomic) IBOutlet UIButton *appointmentsBtn;
@@ -50,6 +49,8 @@
 
 - (IBAction)doLogout:(id)sender
 {
+    AppDelegate *appDelegateObject = (AppDelegate*) [[UIApplication sharedApplication] delegate];
+    [appDelegateObject.userInfo resetAllValues];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 

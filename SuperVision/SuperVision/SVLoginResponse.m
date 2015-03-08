@@ -10,10 +10,6 @@
 
 @interface SVLoginResponse ()
 
-@property (nonatomic, strong) NSString *uId;
-@property (nonatomic, strong) NSString *chavi;
-@property (nonatomic, strong) NSString *appId;
-
 @end
 
 @implementation SVLoginResponse

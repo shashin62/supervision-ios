@@ -21,4 +21,11 @@
     return self;
 }
 
+-(void)resetAllValues
+{
+    [self.appointmentArray removeAllObjects];
+    self.uId = @"";
+    self.chavi = @"";
+}
+
 @end

@@ -10,6 +10,10 @@
 
 @interface SVLoginResponse : NSObject
 
+@property (nonatomic, strong) NSString *uId;
+@property (nonatomic, strong) NSString *chavi;
+@property (nonatomic, strong) NSString *appId;
+
 -(id)initWithValues:(NSDictionary*)dict;
 
 @end

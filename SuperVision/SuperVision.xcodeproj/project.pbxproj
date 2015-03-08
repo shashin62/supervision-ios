@@ -17,7 +17,14 @@
 		B98323B01AA24FA200770625 /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B98323AF1AA24FA200770625 /* DashboardViewController.m */; };
 		B9A69DD91AA2F95C0058E701 /* PaymentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A69DD81AA2F95C0058E701 /* PaymentsViewController.m */; };
 		B9A69DDC1AA2FFB80058E701 /* AppointmentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A69DDB1AA2FFB80058E701 /* AppointmentsViewController.m */; };
-		FB843DFC1AA8255C00F65A36 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = FB843DFB1AA8255C00F65A36 /* MBProgressHUD.m */; };
+		FB1BCA6E1AA987E1001BC8EC /* ReportInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1BCA6D1AA987E1001BC8EC /* ReportInViewController.m */; };
+		FB1BCA711AA9982A001BC8EC /* RecordingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1BCA701AA9982A001BC8EC /* RecordingViewController.m */; };
+		FB1BCA741AA99A1C001BC8EC /* CheckinVerfiedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1BCA731AA99A1C001BC8EC /* CheckinVerfiedViewController.m */; };
+		FB29BC901AAAFAB200EB5779 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB29BC8F1AAAFAB200EB5779 /* AudioToolbox.framework */; };
+		FB29BC951AAB0DC000EB5779 /* SVUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = FB29BC941AAB0DC000EB5779 /* SVUtility.m */; };
+		FB4417741AA8C90700E1AC7B /* AppointmentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FB4417721AA8C90700E1AC7B /* AppointmentTableViewCell.m */; };
+		FB4417751AA8C90700E1AC7B /* AppointmentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB4417731AA8C90700E1AC7B /* AppointmentTableViewCell.xib */; };
+		FB843DFC1AA8255C00F65A36 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = FB843DFB1AA8255C00F65A36 /* MBProgressHUD.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		FB843DFE1AA82F0B00F65A36 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB843DFD1AA82F0B00F65A36 /* CoreMedia.framework */; };
 		FB843E001AA82F1100F65A36 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB843DFF1AA82F1100F65A36 /* CoreVideo.framework */; };
 		FB843E021AA82F4200F65A36 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB843E011AA82F4200F65A36 /* AVFoundation.framework */; };
@@ -58,7 +65,19 @@
 		B9A69DD81AA2F95C0058E701 /* PaymentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentsViewController.m; sourceTree = "<group>"; };
 		B9A69DDA1AA2FFB80058E701 /* AppointmentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentsViewController.h; sourceTree = "<group>"; };
 		B9A69DDB1AA2FFB80058E701 /* AppointmentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentsViewController.m; sourceTree = "<group>"; };
+		FB1BCA6C1AA987E1001BC8EC /* ReportInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportInViewController.h; sourceTree = "<group>"; };
+		FB1BCA6D1AA987E1001BC8EC /* ReportInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportInViewController.m; sourceTree = "<group>"; };
+		FB1BCA6F1AA9982A001BC8EC /* RecordingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordingViewController.h; sourceTree = "<group>"; };
+		FB1BCA701AA9982A001BC8EC /* RecordingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordingViewController.m; sourceTree = "<group>"; };
+		FB1BCA721AA99A1B001BC8EC /* CheckinVerfiedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckinVerfiedViewController.h; sourceTree = "<group>"; };
+		FB1BCA731AA99A1C001BC8EC /* CheckinVerfiedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckinVerfiedViewController.m; sourceTree = "<group>"; };
 		FB2923BA1AA764A1008A4910 /* SVConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVConstant.h; sourceTree = "<group>"; };
+		FB29BC8F1AAAFAB200EB5779 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		FB29BC931AAB0DC000EB5779 /* SVUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVUtility.h; sourceTree = "<group>"; };
+		FB29BC941AAB0DC000EB5779 /* SVUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVUtility.m; sourceTree = "<group>"; };
+		FB4417711AA8C90700E1AC7B /* AppointmentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentTableViewCell.h; sourceTree = "<group>"; };
+		FB4417721AA8C90700E1AC7B /* AppointmentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentTableViewCell.m; sourceTree = "<group>"; };
+		FB4417731AA8C90700E1AC7B /* AppointmentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppointmentTableViewCell.xib; sourceTree = "<group>"; };
 		FB843DFA1AA8255C00F65A36 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		FB843DFB1AA8255C00F65A36 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		FB843DFD1AA82F0B00F65A36 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
@@ -81,6 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB29BC901AAAFAB200EB5779 /* AudioToolbox.framework in Frameworks */,
 				FB843E021AA82F4200F65A36 /* AVFoundation.framework in Frameworks */,
 				FB843E001AA82F1100F65A36 /* CoreVideo.framework in Frameworks */,
 				FB843DFE1AA82F0B00F65A36 /* CoreMedia.framework in Frameworks */,
@@ -97,19 +117,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B97686941AA8EDC1003A7513 /* Framework */ = {
-			isa = PBXGroup;
-			children = (
-				FB843E011AA82F4200F65A36 /* AVFoundation.framework */,
-				FB843DFF1AA82F1100F65A36 /* CoreVideo.framework */,
-				FB843DFD1AA82F0B00F65A36 /* CoreMedia.framework */,
-			);
-			name = Framework;
-			sourceTree = "<group>";
-		};
 		B98323791AA23F6B00770625 = {
 			isa = PBXGroup;
 			children = (
+				FB29BC8F1AAAFAB200EB5779 /* AudioToolbox.framework */,
+				FB843E011AA82F4200F65A36 /* AVFoundation.framework */,
+				FB843DFF1AA82F1100F65A36 /* CoreVideo.framework */,
+				FB843DFD1AA82F0B00F65A36 /* CoreMedia.framework */,
 				B98323841AA23F6B00770625 /* SuperVision */,
 				B983239E1AA23F6B00770625 /* SuperVisionTests */,
 				B98323831AA23F6B00770625 /* Products */,
@@ -128,6 +142,7 @@
 		B98323841AA23F6B00770625 /* SuperVision */ = {
 			isa = PBXGroup;
 			children = (
+				FB4417701AA8C8D000E1AC7B /* TableCell */,
 				FBB17A8B1AA6E1790016BF5D /* APIClasses */,
 				B98323891AA23F6B00770625 /* AppDelegate.h */,
 				B983238A1AA23F6B00770625 /* AppDelegate.m */,
@@ -139,10 +154,18 @@
 				B9A69DD81AA2F95C0058E701 /* PaymentsViewController.m */,
 				B9A69DDA1AA2FFB80058E701 /* AppointmentsViewController.h */,
 				B9A69DDB1AA2FFB80058E701 /* AppointmentsViewController.m */,
+				FB1BCA6C1AA987E1001BC8EC /* ReportInViewController.h */,
+				FB1BCA6D1AA987E1001BC8EC /* ReportInViewController.m */,
+				FB1BCA6F1AA9982A001BC8EC /* RecordingViewController.h */,
+				FB1BCA701AA9982A001BC8EC /* RecordingViewController.m */,
+				FB1BCA721AA99A1B001BC8EC /* CheckinVerfiedViewController.h */,
+				FB1BCA731AA99A1C001BC8EC /* CheckinVerfiedViewController.m */,
 				B983238F1AA23F6B00770625 /* Main.storyboard */,
 				B98323921AA23F6B00770625 /* Images.xcassets */,
 				B98323941AA23F6B00770625 /* LaunchScreen.xib */,
 				B98323851AA23F6B00770625 /* Supporting Files */,
+				FB29BC931AAB0DC000EB5779 /* SVUtility.h */,
+				FB29BC941AAB0DC000EB5779 /* SVUtility.m */,
 			);
 			path = SuperVision;
 			sourceTree = "<group>";
@@ -150,7 +173,6 @@
 		B98323851AA23F6B00770625 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				B97686941AA8EDC1003A7513 /* Framework */,
 				B98323861AA23F6B00770625 /* Info.plist */,
 				B98323871AA23F6B00770625 /* main.m */,
 			);
@@ -172,6 +194,16 @@
 				B98323A01AA23F6B00770625 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FB4417701AA8C8D000E1AC7B /* TableCell */ = {
+			isa = PBXGroup;
+			children = (
+				FB4417711AA8C90700E1AC7B /* AppointmentTableViewCell.h */,
+				FB4417721AA8C90700E1AC7B /* AppointmentTableViewCell.m */,
+				FB4417731AA8C90700E1AC7B /* AppointmentTableViewCell.xib */,
+			);
+			name = TableCell;
 			sourceTree = "<group>";
 		};
 		FBB17A8B1AA6E1790016BF5D /* APIClasses */ = {
@@ -277,6 +309,7 @@
 				B98323911AA23F6B00770625 /* Main.storyboard in Resources */,
 				B98323961AA23F6B00770625 /* LaunchScreen.xib in Resources */,
 				B98323931AA23F6B00770625 /* Images.xcassets in Resources */,
+				FB4417751AA8C90700E1AC7B /* AppointmentTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,14 +329,19 @@
 			files = (
 				B9A69DDC1AA2FFB80058E701 /* AppointmentsViewController.m in Sources */,
 				FBB17A971AA6E2090016BF5D /* SVAppoinmentinfo.m in Sources */,
+				FB1BCA741AA99A1C001BC8EC /* CheckinVerfiedViewController.m in Sources */,
 				B983238B1AA23F6B00770625 /* AppDelegate.m in Sources */,
 				FBB17A941AA6E1DC0016BF5D /* SVUserInfo.m in Sources */,
 				FBB17A9A1AA702500016BF5D /* SVNetworkApi.m in Sources */,
+				FB4417741AA8C90700E1AC7B /* AppointmentTableViewCell.m in Sources */,
 				B98323881AA23F6B00770625 /* main.m in Sources */,
 				B98323AD1AA23FB400770625 /* LoginViewViewController.m in Sources */,
 				FB843DFC1AA8255C00F65A36 /* MBProgressHUD.m in Sources */,
 				FBB17A8E1AA6E1B70016BF5D /* SVLoginRequest.m in Sources */,
 				FBB17A911AA6E1CB0016BF5D /* SVLoginResponse.m in Sources */,
+				FB1BCA711AA9982A001BC8EC /* RecordingViewController.m in Sources */,
+				FB1BCA6E1AA987E1001BC8EC /* ReportInViewController.m in Sources */,
+				FB29BC951AAB0DC000EB5779 /* SVUtility.m in Sources */,
 				B9A69DD91AA2F95C0058E701 /* PaymentsViewController.m in Sources */,
 				B98323B01AA24FA200770625 /* DashboardViewController.m in Sources */,
 			);

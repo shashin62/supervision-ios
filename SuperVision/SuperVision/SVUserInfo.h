@@ -19,4 +19,5 @@
 @property (nonatomic, strong) NSMutableArray * appointmentArray;
 
 -(id)initWithValues:(NSDictionary*)dict;
+-(void)resetAllValues;
 @end

@@ -15,8 +15,9 @@
 
 
 -(void) loginWithCompletionBlock :(SVLoginRequest*)body completionHandler: (void (^)(SVLoginResponse* output, NSError* error))completionBlock;
--(void) getAppoinmentList:(NSString*)uId completionHandler: (void (^)(SVLoginResponse* output, NSError* error))completionBlock;
+-(void) getAppoinmentList:(NSString*)uId completionHandler: (void (^)(NSArray* output, NSError* error))completionBlock;
 -(void) uploadImage:(NSData*)imageData completionHandler: (void (^)(NSString* imageName, NSError* error))completionBlock;
-//-(void) uploadAudio:(NSData*)audioData completionHandler: (void (^)(SVLoginResponse* output, NSError* error))completionBlock;
+-(void) uploadAudio:(NSData*)audioData completionHandler: (void (^)(NSString* output, NSError* error))completionBlock;
+
 // -(void) manageCheckin
 @end
