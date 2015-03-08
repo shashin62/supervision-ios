@@ -54,6 +54,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
 //    [self getAppointmentsFromServer];
+      self.reportInBtn.enabled = NO;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     __weak DashboardViewController *dashboardVC = self;
     
@@ -83,6 +84,8 @@
         for (SVAppoinmentinfo *infoObject  in self.appointmentArray) {
             if ([infoObject.appointmentStatus isEqualToString:@"Today"]) {
              self.notificationLbl.text = @"You have check-in for today.";
+                self.reportInBtn.enabled = YES;
+                break;
             }
         }
     }
