@@ -10,4 +10,5 @@
 
 @interface AppointmentsViewController : UIViewController 
 @property (strong, nonatomic) NSArray *appointmentArray;
+@property (weak, nonatomic) IBOutlet UITableView *appointmentTableView;
 @end

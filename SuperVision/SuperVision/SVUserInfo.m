@@ -17,6 +17,7 @@
         self.appointmentArray = [[NSMutableArray alloc] init];
         self.uId = @"";
         self.chavi = @"";
+        self.audioRecordMessage = @"";
     }
     return self;
 }

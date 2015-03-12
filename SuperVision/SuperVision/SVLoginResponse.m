@@ -21,6 +21,7 @@
         self.uId = dict[@"uid"];
         self.chavi = dict[@"chavi"];
         self.appId = dict[@"appid"];
+        self.audioTextReadMessage = dict[@"AudioReadText"];
     }
     return self;
 }

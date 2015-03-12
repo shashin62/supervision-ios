@@ -53,8 +53,8 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-//    [self getAppointmentsFromServer];
-      self.reportInBtn.enabled = NO;
+    [self getAppointmentsFromServer];
+    self.reportInBtn.enabled = NO;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     __weak DashboardViewController *dashboardVC = self;
     
@@ -124,6 +124,7 @@
     if([[segue identifier] isEqualToString:@"appointments"]){
         AppointmentsViewController *appoinmentsViewController = [segue destinationViewController];
         appoinmentsViewController.appointmentArray = self.appointmentArray;
+        [appoinmentsViewController.appointmentTableView reloadData];
     }
 
     

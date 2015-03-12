@@ -17,6 +17,7 @@
 @property (nonatomic, strong) NSString * chavi;
 @property (nonatomic, strong) NSString * appId;
 @property (nonatomic, strong) NSMutableArray * appointmentArray;
+@property (nonatomic, strong) NSString * audioRecordMessage;
 
 -(id)initWithValues:(NSDictionary*)dict;
 -(void)resetAllValues;

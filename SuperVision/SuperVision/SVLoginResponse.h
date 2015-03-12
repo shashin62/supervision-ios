@@ -13,6 +13,7 @@
 @property (nonatomic, strong) NSString *uId;
 @property (nonatomic, strong) NSString *chavi;
 @property (nonatomic, strong) NSString *appId;
+@property (nonatomic, strong) NSString *audioTextReadMessage;
 
 -(id)initWithValues:(NSDictionary*)dict;
 

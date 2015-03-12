@@ -17,6 +17,9 @@
 		B98323B01AA24FA200770625 /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B98323AF1AA24FA200770625 /* DashboardViewController.m */; };
 		B9A69DD91AA2F95C0058E701 /* PaymentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A69DD81AA2F95C0058E701 /* PaymentsViewController.m */; };
 		B9A69DDC1AA2FFB80058E701 /* AppointmentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A69DDB1AA2FFB80058E701 /* AppointmentsViewController.m */; };
+		FB1783A51AAE0C19000B9E81 /* SuperVision-072214_page15_image2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FB1783A41AAE0C19000B9E81 /* SuperVision-072214_page15_image2.jpg */; };
+		FB1783A81AAE1A09000B9E81 /* ChangeAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1783A71AAE1A09000B9E81 /* ChangeAddressViewController.m */; };
+		FB1783AB1AAE1A20000B9E81 /* ChangeEmployerAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1783AA1AAE1A20000B9E81 /* ChangeEmployerAddressViewController.m */; };
 		FB1BCA6E1AA987E1001BC8EC /* ReportInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1BCA6D1AA987E1001BC8EC /* ReportInViewController.m */; };
 		FB1BCA711AA9982A001BC8EC /* RecordingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1BCA701AA9982A001BC8EC /* RecordingViewController.m */; };
 		FB1BCA741AA99A1C001BC8EC /* CheckinVerfiedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1BCA731AA99A1C001BC8EC /* CheckinVerfiedViewController.m */; };
@@ -28,11 +31,27 @@
 		FB843DFE1AA82F0B00F65A36 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB843DFD1AA82F0B00F65A36 /* CoreMedia.framework */; };
 		FB843E001AA82F1100F65A36 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB843DFF1AA82F1100F65A36 /* CoreVideo.framework */; };
 		FB843E021AA82F4200F65A36 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB843E011AA82F4200F65A36 /* AVFoundation.framework */; };
+		FB9FF52F1AAEF4D000011BC1 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB9FF52E1AAEF4D000011BC1 /* MobileCoreServices.framework */; };
 		FBB17A8E1AA6E1B70016BF5D /* SVLoginRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB17A8D1AA6E1B70016BF5D /* SVLoginRequest.m */; };
 		FBB17A911AA6E1CB0016BF5D /* SVLoginResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB17A901AA6E1CB0016BF5D /* SVLoginResponse.m */; };
 		FBB17A941AA6E1DC0016BF5D /* SVUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB17A931AA6E1DC0016BF5D /* SVUserInfo.m */; };
 		FBB17A971AA6E2090016BF5D /* SVAppoinmentinfo.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB17A961AA6E2090016BF5D /* SVAppoinmentinfo.m */; };
 		FBB17A9A1AA702500016BF5D /* SVNetworkApi.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB17A991AA702500016BF5D /* SVNetworkApi.m */; };
+		FBC3A4C11AADA3B7008C682D /* appointment-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = FBC3A4B21AADA3B7008C682D /* appointment-bg.png */; };
+		FBC3A4C21AADA3B7008C682D /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = FBC3A4B31AADA3B7008C682D /* bg.png */; };
+		FBC3A4C31AADA3B7008C682D /* dropdown-arrow-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = FBC3A4B41AADA3B7008C682D /* dropdown-arrow-bg.png */; };
+		FBC3A4C41AADA3B7008C682D /* dropdown-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = FBC3A4B51AADA3B7008C682D /* dropdown-arrow.png */; };
+		FBC3A4C51AADA3B7008C682D /* location-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FBC3A4B61AADA3B7008C682D /* location-icon.png */; };
+		FBC3A4C61AADA3B7008C682D /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = FBC3A4B71AADA3B7008C682D /* logo.png */; };
+		FBC3A4C71AADA3B7008C682D /* mic-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FBC3A4B81AADA3B7008C682D /* mic-icon.png */; };
+		FBC3A4C81AADA3B7008C682D /* payment-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = FBC3A4B91AADA3B7008C682D /* payment-bg.png */; };
+		FBC3A4C91AADA3B7008C682D /* red-band.png in Resources */ = {isa = PBXBuildFile; fileRef = FBC3A4BA1AADA3B7008C682D /* red-band.png */; };
+		FBC3A4CA1AADA3B7008C682D /* regarding-button.png in Resources */ = {isa = PBXBuildFile; fileRef = FBC3A4BB1AADA3B7008C682D /* regarding-button.png */; };
+		FBC3A4CB1AADA3B7008C682D /* reportin-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = FBC3A4BC1AADA3B7008C682D /* reportin-bg.png */; };
+		FBC3A4CC1AADA3B7008C682D /* sound-wave.png in Resources */ = {isa = PBXBuildFile; fileRef = FBC3A4BD1AADA3B7008C682D /* sound-wave.png */; };
+		FBC3A4CD1AADA3B7008C682D /* supervision-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = FBC3A4BE1AADA3B7008C682D /* supervision-logo.png */; };
+		FBC3A4CE1AADA3B7008C682D /* tick-mark-banner.png in Resources */ = {isa = PBXBuildFile; fileRef = FBC3A4BF1AADA3B7008C682D /* tick-mark-banner.png */; };
+		FBC3A4CF1AADA3B7008C682D /* voice-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FBC3A4C01AADA3B7008C682D /* voice-icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +84,11 @@
 		B9A69DD81AA2F95C0058E701 /* PaymentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentsViewController.m; sourceTree = "<group>"; };
 		B9A69DDA1AA2FFB80058E701 /* AppointmentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentsViewController.h; sourceTree = "<group>"; };
 		B9A69DDB1AA2FFB80058E701 /* AppointmentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentsViewController.m; sourceTree = "<group>"; };
+		FB1783A41AAE0C19000B9E81 /* SuperVision-072214_page15_image2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "SuperVision-072214_page15_image2.jpg"; sourceTree = "<group>"; };
+		FB1783A61AAE1A09000B9E81 /* ChangeAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeAddressViewController.h; sourceTree = "<group>"; };
+		FB1783A71AAE1A09000B9E81 /* ChangeAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeAddressViewController.m; sourceTree = "<group>"; };
+		FB1783A91AAE1A20000B9E81 /* ChangeEmployerAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeEmployerAddressViewController.h; sourceTree = "<group>"; };
+		FB1783AA1AAE1A20000B9E81 /* ChangeEmployerAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeEmployerAddressViewController.m; sourceTree = "<group>"; };
 		FB1BCA6C1AA987E1001BC8EC /* ReportInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportInViewController.h; sourceTree = "<group>"; };
 		FB1BCA6D1AA987E1001BC8EC /* ReportInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportInViewController.m; sourceTree = "<group>"; };
 		FB1BCA6F1AA9982A001BC8EC /* RecordingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordingViewController.h; sourceTree = "<group>"; };
@@ -83,6 +107,7 @@
 		FB843DFD1AA82F0B00F65A36 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		FB843DFF1AA82F1100F65A36 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		FB843E011AA82F4200F65A36 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		FB9FF52E1AAEF4D000011BC1 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		FBB17A8C1AA6E1B70016BF5D /* SVLoginRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVLoginRequest.h; sourceTree = "<group>"; };
 		FBB17A8D1AA6E1B70016BF5D /* SVLoginRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVLoginRequest.m; sourceTree = "<group>"; };
 		FBB17A8F1AA6E1CB0016BF5D /* SVLoginResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVLoginResponse.h; sourceTree = "<group>"; };
@@ -93,6 +118,21 @@
 		FBB17A961AA6E2090016BF5D /* SVAppoinmentinfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVAppoinmentinfo.m; sourceTree = "<group>"; };
 		FBB17A981AA702500016BF5D /* SVNetworkApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVNetworkApi.h; sourceTree = "<group>"; };
 		FBB17A991AA702500016BF5D /* SVNetworkApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVNetworkApi.m; sourceTree = "<group>"; };
+		FBC3A4B21AADA3B7008C682D /* appointment-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "appointment-bg.png"; sourceTree = "<group>"; };
+		FBC3A4B31AADA3B7008C682D /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
+		FBC3A4B41AADA3B7008C682D /* dropdown-arrow-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dropdown-arrow-bg.png"; sourceTree = "<group>"; };
+		FBC3A4B51AADA3B7008C682D /* dropdown-arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dropdown-arrow.png"; sourceTree = "<group>"; };
+		FBC3A4B61AADA3B7008C682D /* location-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location-icon.png"; sourceTree = "<group>"; };
+		FBC3A4B71AADA3B7008C682D /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		FBC3A4B81AADA3B7008C682D /* mic-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mic-icon.png"; sourceTree = "<group>"; };
+		FBC3A4B91AADA3B7008C682D /* payment-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "payment-bg.png"; sourceTree = "<group>"; };
+		FBC3A4BA1AADA3B7008C682D /* red-band.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "red-band.png"; sourceTree = "<group>"; };
+		FBC3A4BB1AADA3B7008C682D /* regarding-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "regarding-button.png"; sourceTree = "<group>"; };
+		FBC3A4BC1AADA3B7008C682D /* reportin-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reportin-bg.png"; sourceTree = "<group>"; };
+		FBC3A4BD1AADA3B7008C682D /* sound-wave.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sound-wave.png"; sourceTree = "<group>"; };
+		FBC3A4BE1AADA3B7008C682D /* supervision-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "supervision-logo.png"; sourceTree = "<group>"; };
+		FBC3A4BF1AADA3B7008C682D /* tick-mark-banner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tick-mark-banner.png"; sourceTree = "<group>"; };
+		FBC3A4C01AADA3B7008C682D /* voice-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "voice-icon.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +140,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB9FF52F1AAEF4D000011BC1 /* MobileCoreServices.framework in Frameworks */,
 				FB29BC901AAAFAB200EB5779 /* AudioToolbox.framework in Frameworks */,
 				FB843E021AA82F4200F65A36 /* AVFoundation.framework in Frameworks */,
 				FB843E001AA82F1100F65A36 /* CoreVideo.framework in Frameworks */,
@@ -127,6 +168,7 @@
 		B98323791AA23F6B00770625 = {
 			isa = PBXGroup;
 			children = (
+				FB9FF52E1AAEF4D000011BC1 /* MobileCoreServices.framework */,
 				FB29BC8F1AAAFAB200EB5779 /* AudioToolbox.framework */,
 				FB843E011AA82F4200F65A36 /* AVFoundation.framework */,
 				FB843DFF1AA82F1100F65A36 /* CoreVideo.framework */,
@@ -174,6 +216,10 @@
 				B98323851AA23F6B00770625 /* Supporting Files */,
 				FB29BC931AAB0DC000EB5779 /* SVUtility.h */,
 				FB29BC941AAB0DC000EB5779 /* SVUtility.m */,
+				FB1783A61AAE1A09000B9E81 /* ChangeAddressViewController.h */,
+				FB1783A71AAE1A09000B9E81 /* ChangeAddressViewController.m */,
+				FB1783A91AAE1A20000B9E81 /* ChangeEmployerAddressViewController.h */,
+				FB1783AA1AAE1A20000B9E81 /* ChangeEmployerAddressViewController.m */,
 			);
 			path = SuperVision;
 			sourceTree = "<group>";
@@ -181,6 +227,7 @@
 		B98323851AA23F6B00770625 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				FBC3A4B11AADA393008C682D /* Images */,
 				B98323861AA23F6B00770625 /* Info.plist */,
 				B98323871AA23F6B00770625 /* main.m */,
 			);
@@ -232,6 +279,29 @@
 				FB2923BA1AA764A1008A4910 /* SVConstant.h */,
 			);
 			name = APIClasses;
+			sourceTree = "<group>";
+		};
+		FBC3A4B11AADA393008C682D /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				FB1783A41AAE0C19000B9E81 /* SuperVision-072214_page15_image2.jpg */,
+				FBC3A4B21AADA3B7008C682D /* appointment-bg.png */,
+				FBC3A4B31AADA3B7008C682D /* bg.png */,
+				FBC3A4B41AADA3B7008C682D /* dropdown-arrow-bg.png */,
+				FBC3A4B51AADA3B7008C682D /* dropdown-arrow.png */,
+				FBC3A4B61AADA3B7008C682D /* location-icon.png */,
+				FBC3A4B71AADA3B7008C682D /* logo.png */,
+				FBC3A4B81AADA3B7008C682D /* mic-icon.png */,
+				FBC3A4B91AADA3B7008C682D /* payment-bg.png */,
+				FBC3A4BA1AADA3B7008C682D /* red-band.png */,
+				FBC3A4BB1AADA3B7008C682D /* regarding-button.png */,
+				FBC3A4BC1AADA3B7008C682D /* reportin-bg.png */,
+				FBC3A4BD1AADA3B7008C682D /* sound-wave.png */,
+				FBC3A4BE1AADA3B7008C682D /* supervision-logo.png */,
+				FBC3A4BF1AADA3B7008C682D /* tick-mark-banner.png */,
+				FBC3A4C01AADA3B7008C682D /* voice-icon.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -314,8 +384,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBC3A4CB1AADA3B7008C682D /* reportin-bg.png in Resources */,
+				FBC3A4CE1AADA3B7008C682D /* tick-mark-banner.png in Resources */,
+				FBC3A4C11AADA3B7008C682D /* appointment-bg.png in Resources */,
+				FBC3A4CA1AADA3B7008C682D /* regarding-button.png in Resources */,
+				FBC3A4C81AADA3B7008C682D /* payment-bg.png in Resources */,
+				FB1783A51AAE0C19000B9E81 /* SuperVision-072214_page15_image2.jpg in Resources */,
+				FBC3A4CD1AADA3B7008C682D /* supervision-logo.png in Resources */,
 				B98323911AA23F6B00770625 /* Main.storyboard in Resources */,
+				FBC3A4C91AADA3B7008C682D /* red-band.png in Resources */,
+				FBC3A4C41AADA3B7008C682D /* dropdown-arrow.png in Resources */,
+				FBC3A4C51AADA3B7008C682D /* location-icon.png in Resources */,
+				FBC3A4CF1AADA3B7008C682D /* voice-icon.png in Resources */,
+				FBC3A4C21AADA3B7008C682D /* bg.png in Resources */,
 				B98323961AA23F6B00770625 /* LaunchScreen.xib in Resources */,
+				FBC3A4CC1AADA3B7008C682D /* sound-wave.png in Resources */,
+				FBC3A4C61AADA3B7008C682D /* logo.png in Resources */,
+				FBC3A4C71AADA3B7008C682D /* mic-icon.png in Resources */,
+				FBC3A4C31AADA3B7008C682D /* dropdown-arrow-bg.png in Resources */,
 				B98323931AA23F6B00770625 /* Images.xcassets in Resources */,
 				FB4417751AA8C90700E1AC7B /* AppointmentTableViewCell.xib in Resources */,
 			);
@@ -347,7 +433,9 @@
 				FB843DFC1AA8255C00F65A36 /* MBProgressHUD.m in Sources */,
 				FBB17A8E1AA6E1B70016BF5D /* SVLoginRequest.m in Sources */,
 				FBB17A911AA6E1CB0016BF5D /* SVLoginResponse.m in Sources */,
+				FB1783AB1AAE1A20000B9E81 /* ChangeEmployerAddressViewController.m in Sources */,
 				FB1BCA711AA9982A001BC8EC /* RecordingViewController.m in Sources */,
+				FB1783A81AAE1A09000B9E81 /* ChangeAddressViewController.m in Sources */,
 				FB1BCA6E1AA987E1001BC8EC /* ReportInViewController.m in Sources */,
 				FB29BC951AAB0DC000EB5779 /* SVUtility.m in Sources */,
 				B9A69DD91AA2F95C0058E701 /* PaymentsViewController.m in Sources */,

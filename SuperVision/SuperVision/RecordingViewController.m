@@ -10,6 +10,9 @@
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 #import "CheckinVerfiedViewController.h"
+#import "SVNetworkApi.h"
+#import "MBProgressHUD.h"
+#import "AppDelegate.h"
 
 #define DOCUMENTS_FOLDER [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
 
@@ -18,12 +21,14 @@
     NSMutableDictionary *recordSetting;
     NSMutableDictionary *editedObject;
     NSString *recorderFilePath;
+    NSString *mp3AudioFilePath;
     AVAudioRecorder *recorder;
     SystemSoundID soundID;
 
 }
 @property (weak, nonatomic) IBOutlet UIButton *btnRecord;
 @property (weak, nonatomic) IBOutlet UIView *topView;
+@property (weak, nonatomic) IBOutlet UILabel *lblRecordTextMessage;
 
 @end
 
@@ -34,20 +39,28 @@
     // Do any additional setup after loading the view.
     self.topView.backgroundColor = [UIColor colorWithRed:0.04 green:0.16 blue:0.35 alpha:1];
     self.btnRecord.backgroundColor = [UIColor colorWithRed:0.76 green:0.15 blue:0.2 alpha:1];
-    recordSetting = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
-                     [NSNumber numberWithFloat: 44100.0],AVSampleRateKey,
-                     //  [NSNumber numberWithFloat: 16000.0],AVSampleRateKey,
-                     [NSNumber numberWithInt: kAudioFormatLinearPCM],AVFormatIDKey,// kAudioFormatLinearPCM
-                     //[NSNumber numberWithInt:kAudioFormatMPEGLayer3],AVFormatIDKey,
-                     [NSNumber numberWithInt:16],AVLinearPCMBitDepthKey,
-                     [NSNumber numberWithInt: 2], AVNumberOfChannelsKey,
-                     [NSNumber numberWithBool:NO],AVLinearPCMIsBigEndianKey,
-                     [NSNumber numberWithBool:NO],AVLinearPCMIsFloatKey,
-                     [NSNumber numberWithInt: AVAudioQualityMedium],AVEncoderAudioQualityKey,nil];
     
-    recorderFilePath = [NSString stringWithFormat:@"%@/recordedSound.wav", DOCUMENTS_FOLDER];
+    
+    
+    recordSetting = [[NSMutableDictionary alloc] init];
+    
+    [recordSetting setValue :[NSNumber numberWithInt:kAudioFormatLinearPCM] forKey:AVFormatIDKey];
+    [recordSetting setValue:[NSNumber numberWithFloat:44100.0] forKey:AVSampleRateKey];
+    [recordSetting setValue:[NSNumber numberWithInt: 2] forKey:AVNumberOfChannelsKey];
+    
+    [recordSetting setValue :[NSNumber numberWithInt:16] forKey:AVLinearPCMBitDepthKey];
+    [recordSetting setValue :[NSNumber numberWithBool:NO] forKey:AVLinearPCMIsBigEndianKey];
+    [recordSetting setValue :[NSNumber numberWithBool:NO] forKey:AVLinearPCMIsFloatKey];
+    
+    recorderFilePath = [NSString stringWithFormat:@"%@/recordedSound.caf", DOCUMENTS_FOLDER];
+    mp3AudioFilePath = [NSString stringWithFormat:@"%@/recordedSound.mp3", DOCUMENTS_FOLDER];
     [self.btnRecord addTarget:self action:@selector(startRecording:) forControlEvents:UIControlEventTouchUpInside];
     [self.btnRecord setTitle:@"Start Recording" forState:UIControlStateNormal];
+
+    AppDelegate *appDelegateObject = (AppDelegate*) [[UIApplication sharedApplication] delegate];
+    if(appDelegateObject.userInfo.audioRecordMessage)
+        [self.lblRecordTextMessage setText:appDelegateObject.userInfo.audioRecordMessage];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -57,13 +70,14 @@
 
 
 -(IBAction)startRecording:(id)sender{
+    
     if(recorder!=nil){
         recorder=nil;
     }
+    
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     NSError *err = nil;
     [audioSession setCategory :AVAudioSessionCategoryPlayAndRecord error:&err];
-    
     if(err){
         NSLog(@"audioSession: %@ %ld %@", [err domain], (long)[err code], [[err userInfo] description]);
         return;
@@ -74,7 +88,6 @@
         NSLog(@"audioSession: %@ %ld %@", [err domain], (long)[err code], [[err userInfo] description]);
         return;
     }
-    
     
     NSLog(@"recorderFilePath: %@",recorderFilePath);
     NSURL *url = [NSURL fileURLWithPath:recorderFilePath];
@@ -125,11 +138,39 @@
 
 - (IBAction) stopRecording:(id)sender
 {
-    NSLog(@"Stop Recording");
     [recorder stop];
-    CheckinVerfiedViewController *checkinVerfiedViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CheckinVerfiedViewControllerStoryBoardId"];
-    [self.navigationController pushViewController:checkinVerfiedViewController animated:YES];
-
+    NSURL *url = [NSURL fileURLWithPath: recorderFilePath];
+    NSError *err = nil;
+    NSData *audioData = [NSData dataWithContentsOfFile:[url path] options: 0 error:&err];
+    if(!audioData){
+        NSLog(@"NO audio data Found: %@ %ld %@", [err domain], (long)[err code], [[err userInfo] description]);
+    }else{
+    NSError * err1 = NULL;
+    NSFileManager * fm1 = [[NSFileManager alloc] init];
+    [fm1 removeItemAtPath:mp3AudioFilePath error:&err];
+    BOOL result = [fm1 moveItemAtPath:recorderFilePath toPath:mp3AudioFilePath error:&err1];
+    if(!result)
+        NSLog(@"Error: %@", err);
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    SVNetworkApi *networkApi = [[SVNetworkApi alloc] init];
+    [networkApi uploadAudio:mp3AudioFilePath completionHandler:^(NSString *audioName, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        });
+        if (error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+            });
+            UIAlertView *message=[[UIAlertView alloc]initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"ok" otherButtonTitles: nil];
+            [message show];
+        }else if(audioName.length)
+       {
+           CheckinVerfiedViewController *checkinVerfiedViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CheckinVerfiedViewControllerStoryBoardId"];
+           [self.navigationController pushViewController:checkinVerfiedViewController animated:YES];
+       }
+    }];
+  }
 }
 
 
