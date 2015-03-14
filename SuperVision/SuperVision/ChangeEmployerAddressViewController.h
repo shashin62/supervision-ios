@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ChangeEmployerAddressViewController : UIViewController
-
+@property (nonatomic) BOOL isPaymentChanged;
 @end

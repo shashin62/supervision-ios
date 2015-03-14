@@ -13,6 +13,6 @@
 #define kAppointmentUrl @"http://66.226.76.46/api/ManageAppointment/%@"
 #define kPictureUploadUrl @"http://66.226.76.46/api/ManageImage"
 #define kAudioUrl @"http://66.226.76.46/api/ManageUpload"
-#define kPostCheckinUrl @"http://66.226.76.46/api/ManageCheckIn"
+#define kManageCheckinUrl @"http://66.226.76.46/api/ManageCheckIn"
 
 #endif

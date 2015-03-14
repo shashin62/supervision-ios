@@ -7,6 +7,9 @@
 //
 
 #import "ChangeEmployerAddressViewController.h"
+#import "PaymentsViewController.h"
+#import "RecordingViewController.h"
+#import "AppDelegate.h"
 
 @interface ChangeEmployerAddressViewController ()
 
@@ -35,9 +38,79 @@
 }
 
 -(IBAction)saveActionEvent:(id)sender{
-    
+    if([self validateTextField]){
+        NSString *employerString =[self.txtEmployer.text stringByTrimmingCharactersInSet:
+                                   [NSCharacterSet whitespaceCharacterSet]];
+        NSString *addressString1 = [self.txtAddress1.text stringByTrimmingCharactersInSet:
+                                    [NSCharacterSet whitespaceCharacterSet]];
+        NSString *addressString2 = [self.txtAddress2.text stringByTrimmingCharactersInSet:
+                                    [NSCharacterSet whitespaceCharacterSet]];
+        NSString *cityString = [self.txtCity.text stringByTrimmingCharactersInSet:
+                                [NSCharacterSet whitespaceCharacterSet]];
+        NSString *phoneString =[self.txtPhone.text stringByTrimmingCharactersInSet:
+                                [NSCharacterSet whitespaceCharacterSet]];
+        NSString *stateString =[self.txtState.text stringByTrimmingCharactersInSet:
+                                [NSCharacterSet whitespaceCharacterSet]];
+        NSString *zipString = [self.txtZip.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
+        
+        AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        [appDelegate.userInfoChangedRequestParam setObject:employerString forKey:@"CompanyName"];
+        [appDelegate.userInfoChangedRequestParam setObject:addressString1 forKey:@"OfficeAddress1"];
+        [appDelegate.userInfoChangedRequestParam setObject:cityString forKey:@"OfficeCity"];
+        [appDelegate.userInfoChangedRequestParam setObject:phoneString forKey:@"OfficePhone"];
+        [appDelegate.userInfoChangedRequestParam setObject:stateString forKey:@"OfficeState"];
+        [appDelegate.userInfoChangedRequestParam setObject:zipString forKey:@"OfficeZip"];
+        if(addressString2)
+            [appDelegate.userInfoChangedRequestParam setObject:addressString2 forKey:@"OfficeAddress2"];
+        
+        if(self.isPaymentChanged)
+        {
+            PaymentsViewController *paymentsViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PaymentsViewControllerStoryBoardId"];
+            [self.navigationController pushViewController:paymentsViewController animated:YES];
+        }else{
+            RecordingViewController *recordingViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"RecordingViewControllerStoryBoardId"];
+            [self.navigationController pushViewController:recordingViewController animated:YES];
+        }
+    }else{
+        UIAlertView *message = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Please fill all fields" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles: nil];
+        [message show];
+
+    }
 }
 
+-(BOOL)validateTextField{
+    NSString *employerString =[self.txtEmployer.text stringByTrimmingCharactersInSet:
+                               [NSCharacterSet whitespaceCharacterSet]];
+    NSString *addressString1 = [self.txtAddress1.text stringByTrimmingCharactersInSet:
+                               [NSCharacterSet whitespaceCharacterSet]];
+    NSString *addressString2 = [self.txtAddress2.text stringByTrimmingCharactersInSet:
+                               [NSCharacterSet whitespaceCharacterSet]];
+    NSString *cityString = [self.txtCity.text stringByTrimmingCharactersInSet:
+                            [NSCharacterSet whitespaceCharacterSet]];
+    NSString *phoneString =[self.txtPhone.text stringByTrimmingCharactersInSet:
+                            [NSCharacterSet whitespaceCharacterSet]];
+    NSString *stateString =[self.txtState.text stringByTrimmingCharactersInSet:
+                            [NSCharacterSet whitespaceCharacterSet]];
+    NSString *zipString = [self.txtZip.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
+    BOOL isValid = NO;
+    if(employerString  && cityString && phoneString && stateString && zipString && (addressString1 || addressString2)){
+        isValid = YES;
+    }
+    return isValid;
+}
+
+
+-(void)dealloc{
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [appDelegate.userInfoChangedRequestParam removeObjectForKey:@"CompanyName"];
+    [appDelegate.userInfoChangedRequestParam removeObjectForKey:@"OfficeAddress1"];
+    [appDelegate.userInfoChangedRequestParam removeObjectForKey:@"OfficeAddress2"];
+    [appDelegate.userInfoChangedRequestParam removeObjectForKey:@"OfficeCity"];
+    [appDelegate.userInfoChangedRequestParam removeObjectForKey:@"OfficePhone"];
+    [appDelegate.userInfoChangedRequestParam removeObjectForKey:@"OfficeState"];
+    [appDelegate.userInfoChangedRequestParam removeObjectForKey:@"OfficeZip"];
+
+}
 /*
 #pragma mark - Navigation
 

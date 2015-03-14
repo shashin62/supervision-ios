@@ -13,7 +13,6 @@
 #import "SVAppoinmentinfo.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 
-
 @implementation SVNetworkApi
 
 -(void) loginWithCompletionBlock :(SVLoginRequest*)body completionHandler: (void (^)(SVLoginResponse* output, NSError* error))completionBlock{
@@ -22,20 +21,21 @@
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]init];
     [request setURL:[NSURL URLWithString:loginApiUrl]];
     [request setHTTPMethod:@"GET"];
-    NSURLResponse *response;
-    NSError *error;
-    NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    NSLog(@"aData=%@",aData);
-    if (aData) {
-        NSDictionary* results = [NSJSONSerialization JSONObjectWithData:aData options:kNilOptions error:&error];
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        NSError *error;
+   // NSLog(@"aData=%@",aData);
+    if (data) {
+        NSDictionary* results = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
         NSLog(@"jsonReturn %@",results);
         if(results){
             SVLoginResponse *loginResponse = [[SVLoginResponse alloc] initWithValues:results];
             completionBlock(loginResponse, nil);
         }
+        
     }else
-            completionBlock(nil, error);
-    
+            completionBlock(nil, connectionError);
+    }];
 }
 
 -(void) getAppoinmentList:(NSString*)uId completionHandler: (void (^)(NSArray* output, NSError* error))completionBlock{
@@ -44,19 +44,48 @@
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]init];
     [request setURL:[NSURL URLWithString:appoitmentApiUrl]];
     [request setHTTPMethod:@"GET"];
-    NSURLResponse *response;
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        NSError *error;
+        if (data) {
+            NSArray* resultsArray = (NSArray*)[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+            NSLog(@"jsonReturn %@",resultsArray);
+            if(resultsArray){
+                completionBlock([self getAppointmentObjectArrayFromData:resultsArray], nil);
+            }
+        }else
+            completionBlock(nil, error);
+    }];
+   // NSLog(@"aData=%@",aData);
+    
+}
+
+-(void)doMobileCheckIn:(NSMutableDictionary*)params completionHandler:(void (^)(NSString* response, NSError* error))completionBlock{
+    
+    NSURL *url = [NSURL URLWithString:kManageCheckinUrl];
     NSError *error;
-    NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    NSLog(@"aData=%@",aData);
-    if (aData) {
-        NSArray* resultsArray = (NSArray*)[NSJSONSerialization JSONObjectWithData:aData options:kNilOptions error:&error];
-        NSLog(@"jsonReturn %@",resultsArray);
-        if(resultsArray){
-            
-          completionBlock([self getAppointmentObjectArrayFromData:resultsArray], nil);
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
+    NSData *postdata = [NSJSONSerialization dataWithJSONObject:params options:0 error:&error];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[postdata length]] forHTTPHeaderField:@"Content-Length"];
+    [request setHTTPBody: postdata];
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        NSLog(@"Mobile Check In  response:%@ \nData:%@ \nerror:%@", response, [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding], error);
+        if(data){
+            NSString *IsSuccessStatusCodeString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            NSArray *responseArray = [IsSuccessStatusCodeString componentsSeparatedByString:@"="];
+            if(responseArray && [responseArray count] >1){
+                NSString *statusString = [responseArray objectAtIndex:1];
+                completionBlock(statusString, nil);
+            }else
+                completionBlock(@"false", nil);
+
         }
-    }else
-        completionBlock(nil, error);
+        else
+            completionBlock(nil, error);
+    }];
 }
 
 -(void)uploadImage:(NSData *)imageData completionHandler:(void (^)(NSString *, NSError *))completionBlock{

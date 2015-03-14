@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import <CoreLocation/CoreLocation.h>
 
 @interface AppDelegate ()
 
@@ -19,6 +20,11 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     self.userInfo = [[SVUserInfo alloc] init];
+    self.userInfoChangedRequestParam = [[NSMutableDictionary alloc] init];
+    CLLocationCoordinate2D coordinate = [self getLocation];
+    self.latitude = [NSString stringWithFormat:@"%f", coordinate.latitude];
+    self.longitude = [NSString stringWithFormat:@"%f", coordinate.longitude];
+    
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0.13 green:0.13 blue:0.13 alpha:1]];
     [[UINavigationBar appearance] setTranslucent:NO];
     
@@ -31,6 +37,7 @@
     
     return YES;
 }
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -97,6 +104,18 @@
         [self.loadingView setFrame:loadingViewSize];
         self.loadingIndicator.center = self.loadingView.center;
     }
+}
+
+-(CLLocationCoordinate2D) getLocation{
+    CLLocationManager *locationManager = [[CLLocationManager alloc] init];
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    locationManager.distanceFilter = kCLDistanceFilterNone;
+    [locationManager startUpdatingLocation];
+    CLLocation *location = [locationManager location];
+    CLLocationCoordinate2D coordinate = [location coordinate];
+    
+    return coordinate;
 }
 
 

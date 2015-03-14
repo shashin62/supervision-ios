@@ -37,6 +37,7 @@
     
 }
 
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -66,7 +67,6 @@
 */
 
 -(IBAction)loginActionEvent:(id)sender{
-    
     if(self.usernameTxt.text.length>0 && self.passwordTxt.text.length>0)
     {
     SVNetworkApi *networkApi = [[SVNetworkApi alloc] init];

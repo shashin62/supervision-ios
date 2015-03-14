@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface ChangeAddressViewController : UIViewController
+@property (nonatomic) BOOL isJobChanged;
+@property (nonatomic) BOOL isPaymentChanged;
 
 @end

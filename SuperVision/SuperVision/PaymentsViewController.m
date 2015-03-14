@@ -7,6 +7,8 @@
 //
 
 #import "PaymentsViewController.h"
+#import "RecordingViewController.h"
+#import "AppDelegate.h"
 
 @interface PaymentsViewController () <UIActionSheetDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *paymentInfoLbl;
@@ -75,5 +77,42 @@
 */
 
 - (IBAction)doContinue:(id)sender {
+    if([self validateTextField]){
+//        NSString *cvvTextString = [self.cvvTxt.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
+        NSString *amountString = [self.amountTxt.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
+        NSString *paymentString = [self.paymentMethodTxt.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
+        
+        AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        [appDelegate.userInfoChangedRequestParam setObject:paymentString forKey:@"PaymentSource"];
+        [appDelegate.userInfoChangedRequestParam setObject:amountString forKey:@"PaymentAmount"];
+      //  [appDelegate.userInfoChangedRequestParam setObject:cityString forKey:@"OfficeCity"];
+
+        RecordingViewController *recordingViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"RecordingViewControllerStoryBoardId"];
+        [self.navigationController pushViewController:recordingViewController animated:YES];
+
+    }else{
+        UIAlertView *message = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Please fill all fields" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles: nil];
+        [message show];
+    }
 }
+
+-(BOOL)validateTextField{
+    NSString *cvvTextString = [self.cvvTxt.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
+    NSString *amountString = [self.amountTxt.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
+    NSString *paymentString = [self.paymentMethodTxt.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
+
+    BOOL isValid = NO;
+    if(cvvTextString && amountString && paymentString){
+        isValid = YES;
+    }
+    return isValid;
+}
+
+-(void)dealloc{
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [appDelegate.userInfoChangedRequestParam removeObjectForKey:@"PaymentSource"];
+    [appDelegate.userInfoChangedRequestParam removeObjectForKey:@"PaymentAmount"];
+}
+
+
 @end

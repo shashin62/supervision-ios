@@ -35,7 +35,6 @@
     SVAppoinmentinfo *appointmentInfoObject = [self.appointmentArray objectAtIndex:0];
     self.officerName.text = appointmentInfoObject.appointmentOfficer;
      [self.officerName sizeToFit];
-    [self.appointmentTableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {

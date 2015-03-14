@@ -14,7 +14,9 @@
 #import "MBProgressHUD.h"
 #import "RecordingViewController.h"
 #import "ChangeAddressViewController.h"
-
+#import "ChangeEmployerAddressViewController.h"
+#import "PaymentsViewController.h"
+#import "AppDelegate.h"
 
 #if TARGET_IPHONE_SIMULATOR
 NSString * const DeviceMode = @"Simulator";
@@ -158,6 +160,9 @@ NSString * const DeviceMode = @"Device";
     if(imageData){
         [networkApi uploadImage:imageData completionHandler:^(NSString *imageName, NSError *error) {
             NSLog(@"Image Upload Api Call");
+            AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+            [appDelegate.userInfoChangedRequestParam setObject:imageName forKey:@"CheckInPictureName"];
+
         }];
     }
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -240,6 +245,43 @@ NSString * const DeviceMode = @"Device";
 
 -(IBAction)continueButtonActionEvent:(id)sender{
     
+     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    if(self.isAddressChanged)
+    [appDelegate.userInfoChangedRequestParam setObject:@"true" forKey:@"HasAddressChanged"];
+    if(self.isJobChanged)
+    [appDelegate.userInfoChangedRequestParam setObject:@"true" forKey:@"HasJobChanged"];
+    if(self.isArrestedChanged)
+    [appDelegate.userInfoChangedRequestParam setObject:@"true" forKey:@"hasArrested"];
+    if(self.isPaymentChanged)
+    [appDelegate.userInfoChangedRequestParam setObject:@"true" forKey:@"hasPayment"];
+    if(self.isScheduleAppointmentChanged)
+    [appDelegate.userInfoChangedRequestParam setObject:@"true" forKey:@"hasAppointmentWithOfficer"];
+
+    
+        if(self.isAddressChanged){
+            ChangeAddressViewController *changeAddressViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ChangeAddressViewControllerStoryBoardId"];
+            changeAddressViewController.isJobChanged = self.isJobChanged;
+            changeAddressViewController.isPaymentChanged = self.isPaymentChanged;
+            [self.navigationController pushViewController:changeAddressViewController animated:YES];
+
+        }else if(self.isJobChanged){
+            ChangeEmployerAddressViewController *changeEmployerAddressViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ChangeEmployerAddressViewControllerStoryBoardId"];
+            changeEmployerAddressViewController.isPaymentChanged = self.isPaymentChanged;
+            [self.navigationController pushViewController:changeEmployerAddressViewController animated:YES];
+        }else if(self.isPaymentChanged)
+        {
+            PaymentsViewController *paymentsViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PaymentsViewControllerStoryBoardId"];
+            [self.navigationController pushViewController:paymentsViewController animated:YES];
+        }else{
+            RecordingViewController *recordingViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"RecordingViewControllerStoryBoardId"];
+            [self.navigationController pushViewController:recordingViewController animated:YES];
+        }
 }
+
+-(void)dealloc{
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [appDelegate.userInfoChangedRequestParam removeAllObjects];
+}
+
 
 @end

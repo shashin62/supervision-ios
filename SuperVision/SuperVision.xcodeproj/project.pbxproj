@@ -27,6 +27,8 @@
 		FB29BC951AAB0DC000EB5779 /* SVUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = FB29BC941AAB0DC000EB5779 /* SVUtility.m */; };
 		FB4417741AA8C90700E1AC7B /* AppointmentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FB4417721AA8C90700E1AC7B /* AppointmentTableViewCell.m */; };
 		FB4417751AA8C90700E1AC7B /* AppointmentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB4417731AA8C90700E1AC7B /* AppointmentTableViewCell.xib */; };
+		FB78AEF31AB2EC5D0071AEB6 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB78AEF21AB2EC5D0071AEB6 /* CoreLocation.framework */; };
+		FB78AEF71AB2F3070071AEB6 /* checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = FB78AEF61AB2F3070071AEB6 /* checkmark.png */; };
 		FB843DFC1AA8255C00F65A36 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = FB843DFB1AA8255C00F65A36 /* MBProgressHUD.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		FB843DFE1AA82F0B00F65A36 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB843DFD1AA82F0B00F65A36 /* CoreMedia.framework */; };
 		FB843E001AA82F1100F65A36 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB843DFF1AA82F1100F65A36 /* CoreVideo.framework */; };
@@ -102,6 +104,8 @@
 		FB4417711AA8C90700E1AC7B /* AppointmentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentTableViewCell.h; sourceTree = "<group>"; };
 		FB4417721AA8C90700E1AC7B /* AppointmentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentTableViewCell.m; sourceTree = "<group>"; };
 		FB4417731AA8C90700E1AC7B /* AppointmentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppointmentTableViewCell.xib; sourceTree = "<group>"; };
+		FB78AEF21AB2EC5D0071AEB6 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		FB78AEF61AB2F3070071AEB6 /* checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkmark.png; sourceTree = "<group>"; };
 		FB843DFA1AA8255C00F65A36 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		FB843DFB1AA8255C00F65A36 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		FB843DFD1AA82F0B00F65A36 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
@@ -140,6 +144,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB78AEF31AB2EC5D0071AEB6 /* CoreLocation.framework in Frameworks */,
 				FB9FF52F1AAEF4D000011BC1 /* MobileCoreServices.framework in Frameworks */,
 				FB29BC901AAAFAB200EB5779 /* AudioToolbox.framework in Frameworks */,
 				FB843E021AA82F4200F65A36 /* AVFoundation.framework in Frameworks */,
@@ -168,6 +173,7 @@
 		B98323791AA23F6B00770625 = {
 			isa = PBXGroup;
 			children = (
+				FB78AEF21AB2EC5D0071AEB6 /* CoreLocation.framework */,
 				FB9FF52E1AAEF4D000011BC1 /* MobileCoreServices.framework */,
 				FB29BC8F1AAAFAB200EB5779 /* AudioToolbox.framework */,
 				FB843E011AA82F4200F65A36 /* AVFoundation.framework */,
@@ -284,6 +290,7 @@
 		FBC3A4B11AADA393008C682D /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				FB78AEF61AB2F3070071AEB6 /* checkmark.png */,
 				FB1783A41AAE0C19000B9E81 /* SuperVision-072214_page15_image2.jpg */,
 				FBC3A4B21AADA3B7008C682D /* appointment-bg.png */,
 				FBC3A4B31AADA3B7008C682D /* bg.png */,
@@ -401,6 +408,7 @@
 				FBC3A4CC1AADA3B7008C682D /* sound-wave.png in Resources */,
 				FBC3A4C61AADA3B7008C682D /* logo.png in Resources */,
 				FBC3A4C71AADA3B7008C682D /* mic-icon.png in Resources */,
+				FB78AEF71AB2F3070071AEB6 /* checkmark.png in Resources */,
 				FBC3A4C31AADA3B7008C682D /* dropdown-arrow-bg.png in Resources */,
 				B98323931AA23F6B00770625 /* Images.xcassets in Resources */,
 				FB4417751AA8C90700E1AC7B /* AppointmentTableViewCell.xib in Resources */,

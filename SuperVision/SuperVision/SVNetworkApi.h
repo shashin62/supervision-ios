@@ -18,5 +18,5 @@
 -(void) getAppoinmentList:(NSString*)uId completionHandler: (void (^)(NSArray* output, NSError* error))completionBlock;
 -(void) uploadImage:(NSData*)imageData completionHandler: (void (^)(NSString* imageName, NSError* error))completionBlock;
 -(void)uploadAudio:(NSString *)audioFilePath completionHandler:(void (^)(NSString *audioName, NSError *error))completionBlock;
-// -(void) manageCheckin
+-(void)doMobileCheckIn:(NSMutableDictionary*)params completionHandler:(void (^)(NSString* response, NSError* error))completionBlock;
 @end

@@ -8,7 +8,9 @@
 
 #import "CheckinVerfiedViewController.h"
 #import "DashboardViewController.h"
-
+#import "SVNetworkApi.h"
+#import "MBProgressHUD.h"
+#import "AppDelegate.h"
 @interface CheckinVerfiedViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *btnHome;
 @property (weak, nonatomic) IBOutlet UILabel *lblContactNumber;
@@ -25,7 +27,32 @@
     self.view.backgroundColor = [UIColor colorWithRed:0.04 green:0.16 blue:0.35 alpha:1];
     self.btnHome.backgroundColor = [UIColor colorWithRed:0.76 green:0.15 blue:0.2 alpha:1];
     self.title = @"Check In Verified";
+    [self doMobileCheckin];
+}
 
+-(void)doMobileCheckin{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [appDelegate.userInfoChangedRequestParam setObject:@"Mobile Check In" forKey:@"title"];
+    [appDelegate.userInfoChangedRequestParam setObject:@"Mobile Check In" forKey:@"description"];
+    [appDelegate.userInfoChangedRequestParam setObject:appDelegate.userInfo.uId forKey:@"UserID"];
+    [appDelegate.userInfoChangedRequestParam setObject:appDelegate.longitude forKey:@"lng"];
+    [appDelegate.userInfoChangedRequestParam setObject:appDelegate.latitude forKey:@"lat"];
+    //[params setObject:@"" forKey:@"lng"];
+
+    SVNetworkApi *networkApi = [[SVNetworkApi alloc] init];
+    [networkApi doMobileCheckIn:appDelegate.userInfoChangedRequestParam completionHandler:^(NSString *response, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        });
+        if(error){
+            UIAlertView *message=[[UIAlertView alloc]initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"ok" otherButtonTitles: nil];
+            [message show];
+
+        }else if([response isEqualToString:@"false"]){
+            
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

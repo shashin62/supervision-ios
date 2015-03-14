@@ -40,10 +40,7 @@
     self.topView.backgroundColor = [UIColor colorWithRed:0.04 green:0.16 blue:0.35 alpha:1];
     self.btnRecord.backgroundColor = [UIColor colorWithRed:0.76 green:0.15 blue:0.2 alpha:1];
     
-    
-    
     recordSetting = [[NSMutableDictionary alloc] init];
-    
     [recordSetting setValue :[NSNumber numberWithInt:kAudioFormatLinearPCM] forKey:AVFormatIDKey];
     [recordSetting setValue:[NSNumber numberWithFloat:44100.0] forKey:AVSampleRateKey];
     [recordSetting setValue:[NSNumber numberWithInt: 2] forKey:AVNumberOfChannelsKey];
@@ -61,6 +58,12 @@
     if(appDelegateObject.userInfo.audioRecordMessage)
         [self.lblRecordTextMessage setText:appDelegateObject.userInfo.audioRecordMessage];
 
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self.btnRecord setTitle:@"Start Recording" forState:UIControlStateNormal];
+    [self.btnRecord addTarget:self action:@selector(startRecording:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -159,13 +162,12 @@
             [MBProgressHUD hideHUDForView:self.view animated:YES];
         });
         if (error) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
-            });
             UIAlertView *message=[[UIAlertView alloc]initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"ok" otherButtonTitles: nil];
             [message show];
         }else if(audioName.length)
        {
+           AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+           [appDelegate.userInfoChangedRequestParam setObject:audioName forKey:@"CheckInAudioRecordingPath"];
            CheckinVerfiedViewController *checkinVerfiedViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CheckinVerfiedViewControllerStoryBoardId"];
            [self.navigationController pushViewController:checkinVerfiedViewController animated:YES];
        }
