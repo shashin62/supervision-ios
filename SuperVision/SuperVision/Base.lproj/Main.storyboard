@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="1ra-nC-RYq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="1ra-nC-RYq">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -193,7 +193,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t1N-B9-0th" userLabel="reportView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gFj-2J-09l">
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gFj-2J-09l">
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                         <state key="normal" backgroundImage="reportin-bg.png">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -248,7 +248,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cUI-dw-UFT" userLabel="paymentView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uwH-xP-sfc">
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uwH-xP-sfc">
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                         <state key="normal" backgroundImage="payment-bg.png">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1621,13 +1621,13 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TXF-YP-OKB">
                                 <rect key="frame" x="-16" y="-64" width="616" height="200"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please press the red button and speak the following phrase slowly and clearly:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d4h-iq-d5t">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please press the red button and speak the following phrase slowly and clearly:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d4h-iq-d5t">
                                         <rect key="frame" x="20" y="81" width="576" height="41"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="test audio" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mob-ZA-e0g">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="test audio" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mob-ZA-e0g">
                                         <rect key="frame" x="20" y="134" width="576" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1684,12 +1684,37 @@
                                     </mask>
                                 </variation>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recording Started" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LsR-Qd-vQu">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="c4p-nz-Sof"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="c4p-nz-Sof"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="c4p-nz-Sof"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="ued-gx-QcL">
+                                <rect key="frame" x="-10" y="-10" width="20" height="20"/>
+                                <color key="color" red="0.2449570106" green="0.2449570106" blue="0.2449570106" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="LsR-Qd-vQu" secondAttribute="trailing" id="04d-Qf-Eew"/>
                             <constraint firstAttribute="trailingMargin" secondItem="5ID-XQ-GtW" secondAttribute="trailing" constant="-16" id="0Nu-5Y-afg"/>
                             <constraint firstItem="5ID-XQ-GtW" firstAttribute="leading" secondItem="9B4-GU-SsL" secondAttribute="leadingMargin" constant="-16" id="1pK-fm-IfF"/>
                             <constraint firstItem="TXF-YP-OKB" firstAttribute="leading" secondItem="9B4-GU-SsL" secondAttribute="leadingMargin" constant="-32" id="4Of-pc-joQ"/>
+                            <constraint firstAttribute="centerY" secondItem="ued-gx-QcL" secondAttribute="centerY" id="8cC-Ry-O0x"/>
                             <constraint firstItem="SlS-Qr-Vog" firstAttribute="trailing" secondItem="1EN-Q0-XpI" secondAttribute="trailing" id="Coy-da-3qi"/>
                             <constraint firstItem="SlS-Qr-Vog" firstAttribute="bottom" secondItem="1EN-Q0-XpI" secondAttribute="bottom" id="F4g-z3-ouZ"/>
                             <constraint firstItem="TXF-YP-OKB" firstAttribute="top" secondItem="9B4-GU-SsL" secondAttribute="topMargin" constant="-64" id="Gs1-ir-yJK"/>
@@ -1700,10 +1725,13 @@
                             <constraint firstItem="5ID-XQ-GtW" firstAttribute="top" secondItem="TXF-YP-OKB" secondAttribute="bottom" id="SYX-Wz-Ec7"/>
                             <constraint firstAttribute="bottom" secondItem="TXF-YP-OKB" secondAttribute="bottom" constant="464" id="Uls-pW-bBs"/>
                             <constraint firstItem="TXF-YP-OKB" firstAttribute="leading" secondItem="9B4-GU-SsL" secondAttribute="leadingMargin" constant="-32" id="WaY-2a-eLU"/>
+                            <constraint firstItem="LsR-Qd-vQu" firstAttribute="leading" secondItem="9B4-GU-SsL" secondAttribute="leadingMargin" id="ZTP-gm-kr9"/>
                             <constraint firstItem="5Da-zO-pTq" firstAttribute="top" secondItem="bIZ-IE-gbW" secondAttribute="bottom" id="fSa-1V-W9G"/>
                             <constraint firstAttribute="trailingMargin" secondItem="TXF-YP-OKB" secondAttribute="trailing" constant="-16" id="gus-cN-eO1"/>
                             <constraint firstAttribute="trailingMargin" secondItem="bIZ-IE-gbW" secondAttribute="trailing" constant="-16" id="jzv-bs-16I"/>
                             <constraint firstItem="TXF-YP-OKB" firstAttribute="trailing" secondItem="9B4-GU-SsL" secondAttribute="trailingMargin" id="nYo-kd-7rf"/>
+                            <constraint firstAttribute="centerX" secondItem="ued-gx-QcL" secondAttribute="centerX" id="oub-fJ-vSc"/>
+                            <constraint firstItem="SlS-Qr-Vog" firstAttribute="top" secondItem="LsR-Qd-vQu" secondAttribute="bottom" constant="8" id="r1Z-P5-qlz"/>
                             <constraint firstItem="bIZ-IE-gbW" firstAttribute="top" secondItem="9B4-GU-SsL" secondAttribute="topMargin" id="rYL-5K-iMW"/>
                             <constraint firstItem="5Da-zO-pTq" firstAttribute="top" secondItem="SlS-Qr-Vog" secondAttribute="bottom" constant="20" id="sWN-yb-Cf0"/>
                             <constraint firstItem="SlS-Qr-Vog" firstAttribute="leading" secondItem="1EN-Q0-XpI" secondAttribute="trailing" constant="7" id="tF4-GA-g1p"/>
@@ -1715,11 +1743,10 @@
                                 <exclude reference="bIZ-IE-gbW"/>
                                 <exclude reference="5ID-XQ-GtW"/>
                                 <exclude reference="1EN-Q0-XpI"/>
+                                <exclude reference="LsR-Qd-vQu"/>
+                                <exclude reference="ued-gx-QcL"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="0Nu-5Y-afg"/>
-                                <exclude reference="1pK-fm-IfF"/>
-                                <exclude reference="SYX-Wz-Ec7"/>
                                 <exclude reference="jzv-bs-16I"/>
                                 <exclude reference="rYL-5K-iMW"/>
                                 <exclude reference="wni-ce-n8Q"/>
@@ -1728,8 +1755,16 @@
                                 <exclude reference="Jyb-2o-lSj"/>
                                 <exclude reference="Uls-pW-bBs"/>
                                 <exclude reference="nYo-kd-7rf"/>
+                                <exclude reference="0Nu-5Y-afg"/>
+                                <exclude reference="1pK-fm-IfF"/>
+                                <exclude reference="SYX-Wz-Ec7"/>
+                                <exclude reference="8cC-Ry-O0x"/>
+                                <exclude reference="oub-fJ-vSc"/>
+                                <exclude reference="04d-Qf-Eew"/>
+                                <exclude reference="ZTP-gm-kr9"/>
                                 <exclude reference="Coy-da-3qi"/>
                                 <exclude reference="F4g-z3-ouZ"/>
+                                <exclude reference="r1Z-P5-qlz"/>
                                 <exclude reference="tF4-GA-g1p"/>
                                 <exclude reference="uxR-A0-Ice"/>
                                 <exclude reference="Jkz-32-q93"/>
@@ -1741,16 +1776,23 @@
                                 <include reference="bIZ-IE-gbW"/>
                                 <include reference="5ID-XQ-GtW"/>
                                 <include reference="1EN-Q0-XpI"/>
+                                <include reference="LsR-Qd-vQu"/>
+                                <include reference="ued-gx-QcL"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="0Nu-5Y-afg"/>
-                                <include reference="1pK-fm-IfF"/>
-                                <include reference="SYX-Wz-Ec7"/>
                                 <include reference="jzv-bs-16I"/>
                                 <include reference="rYL-5K-iMW"/>
                                 <include reference="wni-ce-n8Q"/>
+                                <include reference="0Nu-5Y-afg"/>
+                                <include reference="1pK-fm-IfF"/>
+                                <include reference="SYX-Wz-Ec7"/>
+                                <include reference="8cC-Ry-O0x"/>
+                                <include reference="oub-fJ-vSc"/>
+                                <include reference="04d-Qf-Eew"/>
+                                <include reference="ZTP-gm-kr9"/>
                                 <exclude reference="Coy-da-3qi"/>
                                 <include reference="F4g-z3-ouZ"/>
+                                <include reference="r1Z-P5-qlz"/>
                                 <include reference="tF4-GA-g1p"/>
                                 <include reference="uxR-A0-Ice"/>
                                 <include reference="Jkz-32-q93"/>
@@ -1759,8 +1801,10 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="activityIndicatorView" destination="ued-gx-QcL" id="GrQ-ae-2wJ"/>
                         <outlet property="btnRecord" destination="SlS-Qr-Vog" id="9gM-PR-u0j"/>
                         <outlet property="lblRecordTextMessage" destination="Mob-ZA-e0g" id="Vhd-VK-sFU"/>
+                        <outlet property="recordingLabel" destination="LsR-Qd-vQu" id="hQ2-wZ-Asb"/>
                         <outlet property="topView" destination="TXF-YP-OKB" id="HPr-Ss-YKa"/>
                     </connections>
                 </viewController>
@@ -1804,7 +1848,7 @@
                                     </constraint>
                                     <constraint firstAttribute="height" constant="30" id="3cB-Rq-Yhk"/>
                                 </constraints>
-                                <state key="normal" title="Schedule Appointment">
+                                <state key="normal" title="Home">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>

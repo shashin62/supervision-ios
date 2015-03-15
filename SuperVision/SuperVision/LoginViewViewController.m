@@ -37,7 +37,6 @@
     
 }
 
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -54,6 +53,11 @@
         [self loginActionEvent:nil];
     }
     return YES;
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [self.usernameTxt setText:@""];
+    [self.passwordTxt setText:@""];
 }
 
 /*
@@ -95,7 +99,8 @@
             [appDelegateObject.userInfo setUId:output.uId];
             [appDelegateObject.userInfo setChavi:output.chavi];
             [appDelegateObject.userInfo setAudioRecordMessage:output.audioTextReadMessage];
-                
+            [appDelegateObject.userInfo setAppId:output.appId];
+    
             dispatch_async(dispatch_get_main_queue(), ^{
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
                 DashboardViewController *dashboardViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"DashBoardViewControllerStoryBoardId"];

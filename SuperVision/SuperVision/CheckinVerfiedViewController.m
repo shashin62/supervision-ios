@@ -36,8 +36,11 @@
     [appDelegate.userInfoChangedRequestParam setObject:@"Mobile Check In" forKey:@"title"];
     [appDelegate.userInfoChangedRequestParam setObject:@"Mobile Check In" forKey:@"description"];
     [appDelegate.userInfoChangedRequestParam setObject:appDelegate.userInfo.uId forKey:@"UserID"];
+    [appDelegate.userInfoChangedRequestParam setObject:appDelegate.userInfo.appId forKey:@"AppointmentID"];
     [appDelegate.userInfoChangedRequestParam setObject:appDelegate.longitude forKey:@"lng"];
     [appDelegate.userInfoChangedRequestParam setObject:appDelegate.latitude forKey:@"lat"];
+    [appDelegate.userInfoChangedRequestParam setObject:[self getCurrentDateTimeStamp] forKey:@"CheckInDate"];
+
     //[params setObject:@"" forKey:@"lng"];
 
     SVNetworkApi *networkApi = [[SVNetworkApi alloc] init];
@@ -51,6 +54,9 @@
 
         }else if([response isEqualToString:@"false"]){
             
+        }else if([response isEqualToString:@"true"]){
+            UIAlertView *message=[[UIAlertView alloc]initWithTitle:@"" message:@"Your Check In details have been successfully submitted." delegate:nil cancelButtonTitle:@"ok" otherButtonTitles: nil];
+            [message show];
         }
     }];
 }
@@ -73,5 +79,12 @@
     // Pass the selected object to the new view controller.
 }
 */
-
+-(NSString*)getCurrentDateTimeStamp{
+    NSString *MyString = @"";
+    NSDate *now = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS"];
+    MyString = [dateFormatter stringFromDate:now];
+    return (MyString ? MyString : @" ");
+}
 @end

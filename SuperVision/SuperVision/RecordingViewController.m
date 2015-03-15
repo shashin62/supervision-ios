@@ -14,6 +14,8 @@
 #import "MBProgressHUD.h"
 #import "AppDelegate.h"
 
+
+
 #define DOCUMENTS_FOLDER [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
 
 @interface RecordingViewController () <AVAudioRecorderDelegate>
@@ -29,17 +31,21 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnRecord;
 @property (weak, nonatomic) IBOutlet UIView *topView;
 @property (weak, nonatomic) IBOutlet UILabel *lblRecordTextMessage;
+@property (weak, nonatomic) IBOutlet UILabel *recordingLabel;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 
 @end
 
 @implementation RecordingViewController
+
+//@"Recording Started"
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.topView.backgroundColor = [UIColor colorWithRed:0.04 green:0.16 blue:0.35 alpha:1];
     self.btnRecord.backgroundColor = [UIColor colorWithRed:0.76 green:0.15 blue:0.2 alpha:1];
-    
+    [self.recordingLabel setHidden:YES];
     recordSetting = [[NSMutableDictionary alloc] init];
     [recordSetting setValue :[NSNumber numberWithInt:kAudioFormatLinearPCM] forKey:AVFormatIDKey];
     [recordSetting setValue:[NSNumber numberWithFloat:44100.0] forKey:AVSampleRateKey];
@@ -62,6 +68,8 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [self.activityIndicatorView stopAnimating];
+    [self.recordingLabel setHidden:YES];
     [self.btnRecord setTitle:@"Start Recording" forState:UIControlStateNormal];
     [self.btnRecord addTarget:self action:@selector(startRecording:) forControlEvents:UIControlEventTouchUpInside];
 }
@@ -131,16 +139,19 @@
         [cantRecordAlert show];
         return;
     }
-    
+    [self.recordingLabel setHidden:NO];
+    [self.activityIndicatorView startAnimating];
     // start recording
     [recorder recordForDuration:(NSTimeInterval) 20];
-        [self.btnRecord setTitle:@"Stop Recording" forState:UIControlStateNormal];
+    [self.btnRecord setTitle:@"Stop Recording" forState:UIControlStateNormal];
     [self.btnRecord removeTarget:self action:@selector(startRecording:) forControlEvents:UIControlEventTouchUpInside];
     [self.btnRecord addTarget:self action:@selector(stopRecording:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (IBAction) stopRecording:(id)sender
 {
+    [self.activityIndicatorView stopAnimating];
+    [self.recordingLabel setHidden:YES];
     [recorder stop];
     NSURL *url = [NSURL fileURLWithPath: recorderFilePath];
     NSError *err = nil;
@@ -160,6 +171,9 @@
     [networkApi uploadAudio:mp3AudioFilePath completionHandler:^(NSString *audioName, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [self.btnRecord setTitle:@"Start Recording" forState:UIControlStateNormal];
+            [self.btnRecord removeTarget:self action:@selector(stopRecording:) forControlEvents:UIControlEventTouchUpInside];
+            [self.btnRecord addTarget:self action:@selector(startRecording:) forControlEvents:UIControlEventTouchUpInside];
         });
         if (error) {
             UIAlertView *message=[[UIAlertView alloc]initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"ok" otherButtonTitles: nil];

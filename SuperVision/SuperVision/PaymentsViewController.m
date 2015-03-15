@@ -78,7 +78,7 @@
 
 - (IBAction)doContinue:(id)sender {
     if([self validateTextField]){
-//        NSString *cvvTextString = [self.cvvTxt.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
+        NSString *cvvTextString = [self.cvvTxt.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
         NSString *amountString = [self.amountTxt.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
         NSString *paymentString = [self.paymentMethodTxt.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
         

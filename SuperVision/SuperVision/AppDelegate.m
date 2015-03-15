@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import <CoreLocation/CoreLocation.h>
 
-@interface AppDelegate ()
+@interface AppDelegate () <CLLocationManagerDelegate>
 
 
 @end

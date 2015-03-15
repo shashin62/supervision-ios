@@ -13,6 +13,10 @@
 #import "SVAppoinmentinfo.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 
+@interface SVNetworkApi ()
+- (NSMutableDictionary*)getCheckindDictionary:(NSMutableDictionary*)dic;
+@end
+
 @implementation SVNetworkApi
 
 -(void) loginWithCompletionBlock :(SVLoginRequest*)body completionHandler: (void (^)(SVLoginResponse* output, NSError* error))completionBlock{
@@ -66,6 +70,8 @@
     NSError *error;
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
     NSData *postdata = [NSJSONSerialization dataWithJSONObject:params options:0 error:&error];
+   // NSString *postdataString = [[NSString alloc] initWithData:postdata encoding:NSUTF8StringEncoding];
+
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
@@ -75,13 +81,11 @@
         NSLog(@"Mobile Check In  response:%@ \nData:%@ \nerror:%@", response, [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding], error);
         if(data){
             NSString *IsSuccessStatusCodeString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            NSArray *responseArray = [IsSuccessStatusCodeString componentsSeparatedByString:@"="];
-            if(responseArray && [responseArray count] >1){
-                NSString *statusString = [responseArray objectAtIndex:1];
-                completionBlock(statusString, nil);
+            NSRange range = [IsSuccessStatusCodeString rangeOfString:@"true"];
+            if(range.location != NSNotFound){
+                completionBlock(@"true", nil);
             }else
                 completionBlock(@"false", nil);
-
         }
         else
             completionBlock(nil, error);
@@ -247,5 +251,40 @@
 - (NSString *)generateBoundaryString
 {
     return [NSString stringWithFormat:@"Boundary-%@", [[NSUUID UUID] UUIDString]];
+}
+
+- (NSMutableDictionary*)getCheckindDictionary:(NSMutableDictionary*)dic{
+    NSMutableDictionary *checkinDetailDictionary = [[NSMutableDictionary alloc] init];
+        [checkinDetailDictionary setObject:([dic objectForKey:@"title" ] ? [dic objectForKey:@"title" ]: @" ") forKey:@"title"];
+        [checkinDetailDictionary setObject:([dic objectForKey:@"description" ] ? [dic objectForKey:@"description" ]: @" ") forKey:@"description"];
+        [checkinDetailDictionary setObject:([dic objectForKey:@"lat" ] ? [dic objectForKey:@"lat" ]: @" ") forKey:@"lat"];
+        [checkinDetailDictionary setObject:([dic objectForKey:@"lng" ] ? [dic objectForKey:@"lng" ]: @" ") forKey:@"lng"];
+        [checkinDetailDictionary setObject:([dic objectForKey:@"PaymentSource" ] ? [dic objectForKey:@"PaymentSource" ]: @" ") forKey:@"PaymentSource"];
+        [checkinDetailDictionary setObject:([dic objectForKey:@"OfficeZip" ] ? [dic objectForKey:@"OfficeZip" ]: @" ") forKey:@"OfficeZip"];
+        [checkinDetailDictionary setObject:([dic objectForKey:@"CheckInAudioRecordingPath" ] ? [dic objectForKey:@"CheckInAudioRecordingPath" ]: @" ") forKey:@"CheckInAudioRecordingPath"];
+        [checkinDetailDictionary setObject:([dic objectForKey:@"CheckInDate" ] ? [dic objectForKey:@"CheckInDate" ]: @" ") forKey:@"CheckInDate"];
+        [checkinDetailDictionary setObject:([dic objectForKey:@"OfficeState" ] ? [dic objectForKey:@"OfficeState" ]: @" ") forKey:@"OfficeState"];
+        [checkinDetailDictionary setObject:([dic objectForKey:@"CheckInPictureName" ] ? [dic objectForKey:@"CheckInPictureName" ]: @" ") forKey:@"CheckInPictureName"];
+        [checkinDetailDictionary setObject:([dic objectForKey:@"CompanyName" ] ? [dic objectForKey:@"CompanyName" ]: @" ") forKey:@"CompanyName"];
+        [checkinDetailDictionary setObject:([dic objectForKey:@"OfficePhone" ] ? [dic objectForKey:@"OfficePhone" ]: @" ") forKey:@"OfficePhone"];
+        [checkinDetailDictionary setObject:([dic objectForKey:@"OfficeCity" ] ? [dic objectForKey:@"OfficeCity" ]: @" ") forKey:@"OfficeCity"];
+        [checkinDetailDictionary setObject:([dic objectForKey:@"HomeAddress1" ] ? [dic objectForKey:@"HomeAddress1" ]: @" ") forKey:@"HomeAddress1"];
+        [checkinDetailDictionary setObject:([dic objectForKey:@"HomeAddress2" ] ? [dic objectForKey:@"HomeAddress2" ]: @" ") forKey:@"HomeAddress2"];
+        [checkinDetailDictionary setObject:([dic objectForKey:@"HomeCity" ] ? [dic objectForKey:@"HomeCity" ]: @" ") forKey:@"HomeCity"];
+        [checkinDetailDictionary setObject:([dic objectForKey:@"HomePhone" ] ? [dic objectForKey:@"HomePhone" ]: @" ") forKey:@"HomePhone"];
+        [checkinDetailDictionary setObject:([dic objectForKey:@"HomeState" ] ? [dic objectForKey:@"HomeState" ]: @" ") forKey:@"HomeState"];
+        [checkinDetailDictionary setObject:([dic objectForKey:@"HomeZip" ] ? [dic objectForKey:@"HomeZip" ]: @" ") forKey:@"HomeZip"];
+        [checkinDetailDictionary setObject:([dic objectForKey:@"OfficeAddress1" ] ? [dic objectForKey:@"OfficeAddress1" ]: @" ") forKey:@"OfficeAddress1"];
+        [checkinDetailDictionary setObject:([dic objectForKey:@"OfficeAddress2" ] ? [dic objectForKey:@"OfficeAddress2" ]: @" ") forKey:@"OfficeAddress2"];
+        [checkinDetailDictionary setObject:([dic objectForKey:@"HasJobChanged" ] ? [dic objectForKey:@"HasJobChanged" ]: @" ") forKey:@"HasJobChanged"];
+        [checkinDetailDictionary setObject:([dic objectForKey:@"HasAddressChanged" ] ? [dic objectForKey:@"HasAddressChanged" ]: @" ") forKey:@"HasAddressChanged"];
+        [checkinDetailDictionary setObject:([dic objectForKey:@"CheckInID" ] ? [dic objectForKey:@"CheckInID" ]: @" ") forKey:@"CheckInID"];
+        [checkinDetailDictionary setObject:([dic objectForKey:@"hasArrested" ] ? [dic objectForKey:@"hasArrested" ]: @" ") forKey:@"hasArrested"];
+        [checkinDetailDictionary setObject:([dic objectForKey:@"hasPayment" ] ? [dic objectForKey:@"hasPayment" ]: @" ") forKey:@"hasPayment"];
+        [checkinDetailDictionary setObject:([dic objectForKey:@"PaymentAmount" ] ? [dic objectForKey:@"PaymentAmount" ]: @" ") forKey:@"PaymentAmount"];
+        [checkinDetailDictionary setObject:([dic objectForKey:@"hasAppointmentWithOfficer" ] ? [dic objectForKey:@"hasAppointmentWithOfficer" ]: @" ") forKey:@"hasAppointmentWithOfficer"];
+        [checkinDetailDictionary setObject:([dic objectForKey:@"AppointmentID" ] ? [dic objectForKey:@"AppointmentID" ]: @" ") forKey:@"AppointmentID"];
+        [checkinDetailDictionary setObject:([dic objectForKey:@"UserID" ] ? [dic objectForKey:@"UserID" ]: @" ") forKey:@"UserID"];
+    return checkinDetailDictionary;
 }
 @end

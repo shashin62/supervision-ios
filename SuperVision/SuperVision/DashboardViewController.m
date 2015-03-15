@@ -72,6 +72,7 @@
 - (IBAction)doLogout:(id)sender
 {
     AppDelegate *appDelegateObject = (AppDelegate*) [[UIApplication sharedApplication] delegate];
+    [appDelegateObject.userInfoChangedRequestParam removeAllObjects];
     [appDelegateObject.userInfo resetAllValues];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }

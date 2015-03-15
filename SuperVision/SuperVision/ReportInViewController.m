@@ -27,10 +27,12 @@ NSString * const DeviceMode = @"Device";
 @interface ReportInViewController () <AVCaptureVideoDataOutputSampleBufferDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *continueBtn;
+
 @property (strong, nonatomic) AVCaptureDevice* device;
 @property (strong, nonatomic) AVCaptureSession* captureSession;
 @property (strong, nonatomic) AVCaptureVideoPreviewLayer* previewLayer;
 @property (strong, nonatomic) UIImage* cameraImage;
+
 @property (nonatomic) BOOL isAddressChanged;
 @property (nonatomic) BOOL isJobChanged;
 @property (nonatomic) BOOL isArrestedChanged;
@@ -74,7 +76,7 @@ NSString * const DeviceMode = @"Device";
     // Do any additional setup after loading the view.
     self.continueBtn.backgroundColor = [UIColor colorWithRed:0.76 green:0.15 blue:0.2 alpha:1];
     self.title = @"Report In";
-    
+
     if([DeviceMode isEqualToString:@"Device"])
         [self takeScreenShotAndSend];
 }
