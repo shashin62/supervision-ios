@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *usernameTxt;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTxt;
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @end
 
 @implementation LoginViewViewController
@@ -35,6 +36,9 @@
     
     self.loginBtn.backgroundColor = [UIColor colorWithRed:0.87 green:0.14 blue:0.2 alpha:1];
     
+    self.usernameTxt.delegate = self;
+    self.passwordTxt.delegate = self;
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -45,12 +49,23 @@
 
 #pragma mark - TextField Delegate
 
-- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
-{
+//- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+//{
+//    if (textField == self.usernameTxt) {
+//        [self.passwordTxt becomeFirstResponder];
+//    } else if (textField == self.passwordTxt) {
+//        [self loginActionEvent:nil];
+//    }
+//    return YES;
+//}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
     if (textField == self.usernameTxt) {
         [self.passwordTxt becomeFirstResponder];
     } else if (textField == self.passwordTxt) {
+        [textField resignFirstResponder];
         [self loginActionEvent:nil];
+        
     }
     return YES;
 }
@@ -58,6 +73,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [self.usernameTxt setText:@""];
     [self.passwordTxt setText:@""];
+    [self registerForKeyboardNotifications];
 }
 
 /*
@@ -71,6 +87,10 @@
 */
 
 -(IBAction)loginActionEvent:(id)sender{
+    
+    [self.usernameTxt resignFirstResponder];
+     [self.passwordTxt resignFirstResponder];
+    
     if(self.usernameTxt.text.length>0 && self.passwordTxt.text.length>0)
     {
     SVNetworkApi *networkApi = [[SVNetworkApi alloc] init];
@@ -116,6 +136,82 @@
     
 }
 
+- (void)registerForKeyboardNotifications {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+     
+                                             selector:@selector(keyboardWasShown:)
+     
+                                                 name:UIKeyboardDidShowNotification
+     
+                                               object:nil];
+    
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+     
+                                             selector:@selector(keyboardWillBeHidden:)
+     
+                                                 name:UIKeyboardWillHideNotification
+     
+                                               object:nil];
+    
+    
+    
+}
 
+
+
+- (void)deregisterFromKeyboardNotifications {
+    
+    
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+     
+                                                    name:UIKeyboardDidHideNotification
+     
+                                                  object:nil];
+    
+    
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+     
+                                                    name:UIKeyboardWillHideNotification
+     
+                                                  object:nil];
+    
+    
+    
+}
+
+
+
+
+
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [self deregisterFromKeyboardNotifications];
+    [super viewWillDisappear:animated];
+}
+
+
+- (void)keyboardWasShown:(NSNotification *)notification {
+    NSDictionary* info = [notification userInfo];
+    CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    CGPoint buttonOrigin = self.loginBtn.frame.origin;
+    CGFloat buttonHeight = self.loginBtn.frame.size.height;
+    CGRect visibleRect = self.view.frame;
+    visibleRect.size.height -= keyboardSize.height;
+    
+    if (!CGRectContainsPoint(visibleRect, buttonOrigin)){
+        CGPoint scrollPoint = CGPointMake(0.0, buttonOrigin.y - visibleRect.size.height + buttonHeight);
+        [self.scrollView setContentOffset:scrollPoint animated:YES];
+    }
+}
+
+
+
+- (void)keyboardWillBeHidden:(NSNotification *)notification {
+    [self.scrollView setContentOffset:CGPointZero animated:YES];
+}
 
 @end

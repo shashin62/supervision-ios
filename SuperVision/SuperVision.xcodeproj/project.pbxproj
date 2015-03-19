@@ -527,7 +527,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "e9e21e64-dfab-4ce5-9bb5-ae2d881f5b70";
+				PROVISIONING_PROFILE = "446981af-5b3f-4dac-8b99-98544d110a37";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -563,7 +563,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "e9e21e64-dfab-4ce5-9bb5-ae2d881f5b70";
+				PROVISIONING_PROFILE = "446981af-5b3f-4dac-8b99-98544d110a37";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -576,7 +576,7 @@
 				INFOPLIST_FILE = SuperVision/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e9e21e64-dfab-4ce5-9bb5-ae2d881f5b70";
+				PROVISIONING_PROFILE = "446981af-5b3f-4dac-8b99-98544d110a37";
 			};
 			name = Debug;
 		};
@@ -587,7 +587,7 @@
 				INFOPLIST_FILE = SuperVision/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e9e21e64-dfab-4ce5-9bb5-ae2d881f5b70";
+				PROVISIONING_PROFILE = "446981af-5b3f-4dac-8b99-98544d110a37";
 			};
 			name = Release;
 		};
