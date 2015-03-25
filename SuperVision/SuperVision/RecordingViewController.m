@@ -128,7 +128,7 @@
     [recorder prepareToRecord];
     recorder.meteringEnabled = YES;
     
-    BOOL audioHWAvailable = audioSession.inputIsAvailable;
+    BOOL audioHWAvailable = audioSession.inputAvailable;
     if (! audioHWAvailable) {
         UIAlertView *cantRecordAlert =
         [[UIAlertView alloc] initWithTitle: @"Warning"

@@ -9,7 +9,9 @@
 #import "AppDelegate.h"
 #import <CoreLocation/CoreLocation.h>
 
-@interface AppDelegate () <CLLocationManagerDelegate>
+@interface AppDelegate () <CLLocationManagerDelegate>{
+    CLLocationManager *locationManager;
+}
 
 
 @end
@@ -21,10 +23,10 @@
     // Override point for customization after application launch.
     self.userInfo = [[SVUserInfo alloc] init];
     self.userInfoChangedRequestParam = [[NSMutableDictionary alloc] init];
-    CLLocationCoordinate2D coordinate = [self getLocation];
-    self.latitude = [NSString stringWithFormat:@"%f", coordinate.latitude];
-    self.longitude = [NSString stringWithFormat:@"%f", coordinate.longitude];
-    
+//    CLLocationCoordinate2D coordinate = [self getLocation];
+//    self.latitude = [NSString stringWithFormat:@"%f", coordinate.latitude];
+//    self.longitude = [NSString stringWithFormat:@"%f", coordinate.longitude];
+    [self getLocation];
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0.13 green:0.13 blue:0.13 alpha:1]];
     [[UINavigationBar appearance] setTranslucent:NO];
     
@@ -106,17 +108,70 @@
     }
 }
 
--(CLLocationCoordinate2D) getLocation{
-    CLLocationManager *locationManager = [[CLLocationManager alloc] init];
+//-(CLLocationCoordinate2D) getLocation{
+//    CLLocationManager *locationManager = [[CLLocationManager alloc] init];
+//    locationManager.delegate = self;
+//    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+//    locationManager.distanceFilter = kCLDistanceFilterNone;
+//    [locationManager startUpdatingLocation];
+//    CLLocation *location = [locationManager location];
+//    CLLocationCoordinate2D coordinate = [location coordinate];
+
+//    
+//    return coordinate;
+//}
+
+-(void) getLocation{
+     locationManager = [[CLLocationManager alloc] init];
     locationManager.delegate = self;
     locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     locationManager.distanceFilter = kCLDistanceFilterNone;
-    [locationManager startUpdatingLocation];
-    CLLocation *location = [locationManager location];
-    CLLocationCoordinate2D coordinate = [location coordinate];
     
-    return coordinate;
+    
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0 &&
+        [CLLocationManager authorizationStatus] != kCLAuthorizationStatusAuthorizedWhenInUse
+        //[CLLocationManager authorizationStatus] != kCLAuthorizationStatusAuthorizedAlways
+        ) {
+        // Will open an confirm dialog to get user's approval
+        [locationManager requestWhenInUseAuthorization];
+        //[_locationManager requestAlwaysAuthorization];
+    } else {
+        [locationManager startUpdatingLocation]; //Will update location immediately
+    }
+    
+    [locationManager startUpdatingLocation];
+  
+    self.latitude = [NSString stringWithFormat:@"%f", locationManager.location.coordinate.latitude];
+    self.longitude = [NSString stringWithFormat:@"%f", locationManager.location.coordinate.longitude];
+    
 }
 
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+    NSLog(@"OldLocation %f %f", oldLocation.coordinate.latitude, oldLocation.coordinate.longitude);
+    NSLog(@"NewLocation %f %f", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
+    self.latitude = [NSString stringWithFormat:@"%f", locationManager.location.coordinate.latitude];
+    self.longitude = [NSString stringWithFormat:@"%f", locationManager.location.coordinate.longitude];
+    [locationManager stopUpdatingLocation];
+}
+
+
+#pragma mark - CLLocationManagerDelegate
+- (void)locationManager:(CLLocationManager*)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
+{
+    switch (status) {
+        case kCLAuthorizationStatusNotDetermined: {
+            NSLog(@"User still thinking..");
+        } break;
+        case kCLAuthorizationStatusDenied: {
+            NSLog(@"User hates you");
+        } break;
+        case kCLAuthorizationStatusAuthorizedWhenInUse:
+        case kCLAuthorizationStatusAuthorizedAlways: {
+            [locationManager startUpdatingLocation]; //Will update location immediately
+        } break;
+        default:
+            break;
+    }
+}
 
 @end

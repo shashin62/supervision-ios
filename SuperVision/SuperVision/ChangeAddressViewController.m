@@ -12,7 +12,7 @@
 #import "RecordingViewController.h"
 #import "AppDelegate.h"
 
-@interface ChangeAddressViewController ()
+@interface ChangeAddressViewController ()<UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *txtAddress1;
 @property (weak, nonatomic) IBOutlet UITextField *txtAddress2;
@@ -30,6 +30,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.txtAddress1.delegate = self;
+    self.txtAddress2.delegate = self;
+    self.txtCity.delegate = self;
+    self.txtState.delegate = self;
+    self.txtZip.delegate = self;
+    self.txtPhone.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -94,7 +100,7 @@
     NSString *zipString = [self.txtZip.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
 
     BOOL isValid = NO;
-    if(cityString && phoneString && stateString && zipString && (addressString1 || addressString2)){
+    if([cityString length] && [phoneString length] && [stateString length] && [zipString length] && ([addressString1 length] || [addressString2 length])){
         isValid = YES;
     }
     return isValid;
@@ -110,6 +116,27 @@
     [appDelegate.userInfoChangedRequestParam removeObjectForKey:@"HomeState"];
     [appDelegate.userInfoChangedRequestParam removeObjectForKey:@"HomeZip"];
 }
+
+#pragma mark - TextField Delegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    if (textField == self.txtAddress1) {
+        [self.txtAddress2 becomeFirstResponder];
+    } else if (textField == self.txtAddress2) {
+        [self.txtCity becomeFirstResponder];
+    }  else if (textField == self.txtCity) {
+        [self.txtState becomeFirstResponder];
+    }  else if (textField == self.txtState) {
+        [self.txtZip becomeFirstResponder];
+    }  else if (textField == self.txtZip) {
+        [self.txtPhone becomeFirstResponder];
+    } else {
+        [self.txtPhone resignFirstResponder];
+    }
+    
+    return YES;
+}
+
 
 /*
 #pragma mark - Navigation

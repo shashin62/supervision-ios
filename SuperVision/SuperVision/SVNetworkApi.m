@@ -28,8 +28,15 @@
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         NSError *error;
-   // NSLog(@"aData=%@",aData);
+  
     if (data) {
+        id result = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+        
+        if (![result isKindOfClass:[NSDictionary class]]) {
+            completionBlock(nil, connectionError);
+            return;
+        }
+        
         NSDictionary* results = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
         NSLog(@"jsonReturn %@",results);
         if(results){
@@ -52,6 +59,14 @@
     [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         NSError *error;
         if (data) {
+            
+            id result = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+            
+            if ([result isKindOfClass:[NSDictionary class]]) {
+                completionBlock(nil, error);
+                return;
+            }
+            
             NSArray* resultsArray = (NSArray*)[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
             NSLog(@"jsonReturn %@",resultsArray);
             if(resultsArray){

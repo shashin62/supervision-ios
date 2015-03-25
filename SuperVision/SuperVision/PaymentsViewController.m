@@ -10,7 +10,7 @@
 #import "RecordingViewController.h"
 #import "AppDelegate.h"
 
-@interface PaymentsViewController () <UIActionSheetDelegate>
+@interface PaymentsViewController () <UIActionSheetDelegate, UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *paymentInfoLbl;
 @property (weak, nonatomic) IBOutlet UITextField *amountTxt;
 @property (weak, nonatomic) IBOutlet UITextField *paymentMethodTxt;
@@ -32,6 +32,9 @@
     self.view.backgroundColor = [UIColor colorWithRed:0.04 green:0.16 blue:0.35 alpha:1];
     self.continueBtn.backgroundColor = [UIColor colorWithRed:0.76 green:0.15 blue:0.2 alpha:1];
     [self.paymentMethodTxt setText:@"Master Card 4658"];
+    
+    self.amountTxt.delegate = self;
+    self.cvvTxt.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -78,7 +81,7 @@
 
 - (IBAction)doContinue:(id)sender {
     if([self validateTextField]){
-        NSString *cvvTextString = [self.cvvTxt.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
+//        NSString *cvvTextString = [self.cvvTxt.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
         NSString *amountString = [self.amountTxt.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
         NSString *paymentString = [self.paymentMethodTxt.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
         
@@ -102,7 +105,7 @@
     NSString *paymentString = [self.paymentMethodTxt.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
 
     BOOL isValid = NO;
-    if(cvvTextString && amountString && paymentString){
+    if([cvvTextString length] && [amountString length] && [paymentString length]){
         isValid = YES;
     }
     return isValid;
@@ -113,6 +116,12 @@
     [appDelegate.userInfoChangedRequestParam removeObjectForKey:@"PaymentSource"];
     [appDelegate.userInfoChangedRequestParam removeObjectForKey:@"PaymentAmount"];
 }
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
+}
+
 
 
 @end

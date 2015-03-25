@@ -30,7 +30,7 @@ NSString * const DeviceMode = @"Device";
 
 @property (strong, nonatomic) AVCaptureDevice* device;
 @property (strong, nonatomic) AVCaptureSession* captureSession;
-@property (strong, nonatomic) AVCaptureVideoPreviewLayer* previewLayer;
+//@property (strong, nonatomic) AVCaptureVideoPreviewLayer* previewLayer;
 @property (strong, nonatomic) UIImage* cameraImage;
 
 @property (nonatomic) BOOL isAddressChanged;
@@ -126,12 +126,12 @@ NSString * const DeviceMode = @"Device";
     [self.captureSession addOutput:output];
     [self.captureSession setSessionPreset:AVCaptureSessionPresetPhoto];
     
-    self.previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:self.captureSession];
-    self.previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
-    
-    // CHECK FOR YOUR APP
-    self.previewLayer.frame = CGRectMake(0, 0, self.view.frame.size.height, self.view.frame.size.width);
-    self.previewLayer.orientation = AVCaptureVideoOrientationLandscapeRight;
+//    self.previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:self.captureSession];
+//    self.previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+//    
+//    // CHECK FOR YOUR APP
+//    self.previewLayer.frame = CGRectMake(0, 0, self.view.frame.size.height, self.view.frame.size.width);
+//    self.previewLayer.orientation = AVCaptureVideoOrientationLandscapeRight;
     // CHECK FOR YOUR APP
     
     //    [self.view.layer insertSublayer:self.previewLayer atIndex:0];   // Comment-out to hide preview layer

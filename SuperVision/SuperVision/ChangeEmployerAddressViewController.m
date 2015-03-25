@@ -11,7 +11,7 @@
 #import "RecordingViewController.h"
 #import "AppDelegate.h"
 
-@interface ChangeEmployerAddressViewController ()
+@interface ChangeEmployerAddressViewController ()<UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *txtEmployer;
 @property (weak, nonatomic) IBOutlet UITextField *txtAddress1;
@@ -30,6 +30,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.txtEmployer.delegate = self;
+    self.txtAddress1.delegate = self;
+    self.txtAddress2.delegate = self;
+    self.txtCity.delegate = self;
+    self.txtState.delegate = self;
+    self.txtZip.delegate = self;
+    self.txtPhone.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -93,7 +101,7 @@
                             [NSCharacterSet whitespaceCharacterSet]];
     NSString *zipString = [self.txtZip.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
     BOOL isValid = NO;
-    if(employerString  && cityString && phoneString && stateString && zipString && (addressString1 || addressString2)){
+    if([employerString length] && [cityString length] && [phoneString length] && [stateString length] && [zipString length] && ([addressString1 length] || [addressString2 length])){
         isValid = YES;
     }
     return isValid;
@@ -110,6 +118,29 @@
     [appDelegate.userInfoChangedRequestParam removeObjectForKey:@"OfficeState"];
     [appDelegate.userInfoChangedRequestParam removeObjectForKey:@"OfficeZip"];
 
+}
+
+
+#pragma mark - TextField Delegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    if (textField == self.txtEmployer) {
+        [self.txtAddress1 becomeFirstResponder];
+    } else if (textField == self.txtAddress1) {
+        [self.txtAddress2 becomeFirstResponder];
+    } else if (textField == self.txtAddress2) {
+        [self.txtCity becomeFirstResponder];
+    }  else if (textField == self.txtCity) {
+        [self.txtState becomeFirstResponder];
+    }  else if (textField == self.txtState) {
+        [self.txtZip becomeFirstResponder];
+    }  else if (textField == self.txtZip) {
+        [self.txtPhone becomeFirstResponder];
+    } else {
+        [self.txtPhone resignFirstResponder];
+    }
+    
+    return YES;
 }
 /*
 #pragma mark - Navigation
