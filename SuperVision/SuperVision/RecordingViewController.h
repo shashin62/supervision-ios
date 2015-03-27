@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TPAACAudioConverter.h"
 
-@interface RecordingViewController : UIViewController
+@interface RecordingViewController : UIViewController<TPAACAudioConverterDelegate>
 
 -(IBAction)startRecording:(id)sender;
 -(IBAction)stopRecording:(id)sender;

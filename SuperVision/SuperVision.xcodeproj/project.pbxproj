@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B95F76C11AC48355005FE2DE /* RecordingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B95F76C01AC48355005FE2DE /* RecordingViewController.m */; };
+		B96774EC1AC5B57B00FBE415 /* TPAACAudioConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = B96774EB1AC5B57B00FBE415 /* TPAACAudioConverter.m */; };
 		B98323881AA23F6B00770625 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B98323871AA23F6B00770625 /* main.m */; };
 		B983238B1AA23F6B00770625 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B983238A1AA23F6B00770625 /* AppDelegate.m */; };
 		B98323911AA23F6B00770625 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B983238F1AA23F6B00770625 /* Main.storyboard */; };
@@ -72,6 +73,8 @@
 
 /* Begin PBXFileReference section */
 		B95F76C01AC48355005FE2DE /* RecordingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordingViewController.m; sourceTree = "<group>"; };
+		B96774EA1AC5B57B00FBE415 /* TPAACAudioConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPAACAudioConverter.h; sourceTree = "<group>"; };
+		B96774EB1AC5B57B00FBE415 /* TPAACAudioConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPAACAudioConverter.m; sourceTree = "<group>"; };
 		B98323821AA23F6B00770625 /* SuperVision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperVision.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B98323861AA23F6B00770625 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B98323871AA23F6B00770625 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -185,6 +188,8 @@
 		B95F764E1AC47248005FE2DE /* AudioConverter */ = {
 			isa = PBXGroup;
 			children = (
+				B96774EA1AC5B57B00FBE415 /* TPAACAudioConverter.h */,
+				B96774EB1AC5B57B00FBE415 /* TPAACAudioConverter.m */,
 			);
 			name = AudioConverter;
 			sourceTree = "<group>";
@@ -484,6 +489,7 @@
 				FB1783AB1AAE1A20000B9E81 /* ChangeEmployerAddressViewController.m in Sources */,
 				FB1783A81AAE1A09000B9E81 /* ChangeAddressViewController.m in Sources */,
 				FB1BCA6E1AA987E1001BC8EC /* ReportInViewController.m in Sources */,
+				B96774EC1AC5B57B00FBE415 /* TPAACAudioConverter.m in Sources */,
 				FB29BC951AAB0DC000EB5779 /* SVUtility.m in Sources */,
 				B9F3CF3F1ABBF246002040F4 /* TPKeyboardAvoidingTableView.m in Sources */,
 				B9A69DD91AA2F95C0058E701 /* PaymentsViewController.m in Sources */,

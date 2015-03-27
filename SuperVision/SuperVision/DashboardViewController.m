@@ -54,7 +54,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
 //    [self getAppointmentsFromServer];
-//    self.reportInBtn.enabled = NO;
+    self.reportInBtn.enabled = NO;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     __weak DashboardViewController *dashboardVC = self;
     
