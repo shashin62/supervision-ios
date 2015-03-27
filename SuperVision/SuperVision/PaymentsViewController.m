@@ -54,7 +54,7 @@
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Master Card 4658"]) {
-        NSLog(@"The Normal action sheet.");
+//        NSLog(@"The Normal action sheet.");
         [self.paymentMethodTxt setText:@"Master Card 4658"];
     }
     else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Visa 9879"]){
@@ -62,10 +62,10 @@
         [self.paymentMethodTxt setText:@"Visa 9879"];
     }
     else{
-        NSLog(@"The Color selection action sheet.");
+//        NSLog(@"The Color selection action sheet.");
     }
     
-    NSLog(@"Index = %ld - Title = %@", (long)buttonIndex, [actionSheet buttonTitleAtIndex:buttonIndex]);
+//    NSLog(@"Index = %ld - Title = %@", (long)buttonIndex, [actionSheet buttonTitleAtIndex:buttonIndex]);
 }
 
 

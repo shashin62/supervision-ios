@@ -68,7 +68,7 @@
             }
             
             NSArray* resultsArray = (NSArray*)[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-            NSLog(@"jsonReturn %@",resultsArray);
+//            NSLog(@"jsonReturn %@",resultsArray);
             if(resultsArray){
                 completionBlock([self getAppointmentObjectArrayFromData:resultsArray], nil);
             }

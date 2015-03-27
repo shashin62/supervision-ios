@@ -57,6 +57,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [self getLocation];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -147,8 +148,8 @@
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
-    NSLog(@"OldLocation %f %f", oldLocation.coordinate.latitude, oldLocation.coordinate.longitude);
-    NSLog(@"NewLocation %f %f", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
+//    NSLog(@"OldLocation %f %f", oldLocation.coordinate.latitude, oldLocation.coordinate.longitude);
+//    NSLog(@"NewLocation %f %f", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
     self.latitude = [NSString stringWithFormat:@"%f", locationManager.location.coordinate.latitude];
     self.longitude = [NSString stringWithFormat:@"%f", locationManager.location.coordinate.longitude];
     [locationManager stopUpdatingLocation];

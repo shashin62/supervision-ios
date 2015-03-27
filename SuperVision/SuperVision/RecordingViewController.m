@@ -13,6 +13,8 @@
 #import "SVNetworkApi.h"
 #import "MBProgressHUD.h"
 #import "AppDelegate.h"
+#import <UIKit/UIKit.h>
+#import <libkern/OSAtomic.h>
 
 
 
@@ -42,6 +44,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view.
     self.topView.backgroundColor = [UIColor colorWithRed:0.04 green:0.16 blue:0.35 alpha:1];
     self.btnRecord.backgroundColor = [UIColor colorWithRed:0.76 green:0.15 blue:0.2 alpha:1];
@@ -56,7 +59,8 @@
     [recordSetting setValue :[NSNumber numberWithBool:NO] forKey:AVLinearPCMIsFloatKey];
     
     recorderFilePath = [NSString stringWithFormat:@"%@/recordedSound.caf", DOCUMENTS_FOLDER];
-    mp3AudioFilePath = [NSString stringWithFormat:@"%@/recordedSound.mp3", DOCUMENTS_FOLDER];
+    mp3AudioFilePath = [NSString stringWithFormat:@"%@/recordedSound.mp4", DOCUMENTS_FOLDER];
+    
     [self.btnRecord addTarget:self action:@selector(startRecording:) forControlEvents:UIControlEventTouchUpInside];
     [self.btnRecord setTitle:@"Start Recording" forState:UIControlStateNormal];
 
@@ -153,42 +157,58 @@
     [self.activityIndicatorView stopAnimating];
     [self.recordingLabel setHidden:YES];
     [recorder stop];
-    NSURL *url = [NSURL fileURLWithPath: recorderFilePath];
-    NSError *err = nil;
-    NSData *audioData = [NSData dataWithContentsOfFile:[url path] options: 0 error:&err];
-    if(!audioData){
-        NSLog(@"NO audio data Found: %@ %ld %@", [err domain], (long)[err code], [[err userInfo] description]);
-    }else{
-    NSError * err1 = NULL;
-    NSFileManager * fm1 = [[NSFileManager alloc] init];
-    [fm1 removeItemAtPath:mp3AudioFilePath error:&err];
-    BOOL result = [fm1 moveItemAtPath:recorderFilePath toPath:mp3AudioFilePath error:&err1];
-    if(!result)
-        NSLog(@"Error: %@", err);
-    
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    SVNetworkApi *networkApi = [[SVNetworkApi alloc] init];
-    [networkApi uploadAudio:mp3AudioFilePath completionHandler:^(NSString *audioName, NSError *error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            [self.btnRecord setTitle:@"Start Recording" forState:UIControlStateNormal];
-            [self.btnRecord removeTarget:self action:@selector(stopRecording:) forControlEvents:UIControlEventTouchUpInside];
-            [self.btnRecord addTarget:self action:@selector(startRecording:) forControlEvents:UIControlEventTouchUpInside];
-        });
-        if (error) {
-            UIAlertView *message=[[UIAlertView alloc]initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"ok" otherButtonTitles: nil];
-            [message show];
-        }else if(audioName.length)
-       {
-           AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-           [appDelegate.userInfoChangedRequestParam setObject:audioName forKey:@"CheckInAudioRecordingPath"];
-           CheckinVerfiedViewController *checkinVerfiedViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CheckinVerfiedViewControllerStoryBoardId"];
-           [self.navigationController pushViewController:checkinVerfiedViewController animated:YES];
-       }
-    }];
-  }
+    if([self convertAudio])
+    {
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        SVNetworkApi *networkApi = [[SVNetworkApi alloc] init];
+        [networkApi uploadAudio:mp3AudioFilePath completionHandler:^(NSString *audioName, NSError *error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                [self.btnRecord setTitle:@"Start Recording" forState:UIControlStateNormal];
+                [self.btnRecord removeTarget:self action:@selector(stopRecording:) forControlEvents:UIControlEventTouchUpInside];
+                [self.btnRecord addTarget:self action:@selector(startRecording:) forControlEvents:UIControlEventTouchUpInside];
+            });
+            if (error) {
+                UIAlertView *message=[[UIAlertView alloc]initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"ok" otherButtonTitles: nil];
+                [message show];
+            }else if(audioName.length)
+            {
+                AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+                [appDelegate.userInfoChangedRequestParam setObject:audioName forKey:@"CheckInAudioRecordingPath"];
+                CheckinVerfiedViewController *checkinVerfiedViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CheckinVerfiedViewControllerStoryBoardId"];
+                [self.navigationController pushViewController:checkinVerfiedViewController animated:YES];
+            }
+        }];
+    } // EndIF
 }
 
+- (BOOL)convertAudio{
+    
+    BOOL flag = YES;
+    CFURLRef sourceURL;
+    CFURLRef destinationURL;
+    OSType   outputFormat;
+    Float64  sampleRate;
+    
+    NSArray  *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    
+    sourceURL = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, (CFStringRef)recorderFilePath, kCFURLPOSIXPathStyle, false);
+    
+//    mp3AudioFilePath = [[NSString alloc] initWithFormat: @"%@/output1.mp4", documentsDirectory];
+    destinationURL = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, (CFStringRef)mp3AudioFilePath, kCFURLPOSIXPathStyle, false);
+    
+    outputFormat = kAudioFormatMPEG4AAC;
+    sampleRate = 44100.0;
+    
+//    OSStatus error = DoConvertFile(sourceURL, destinationURL, outputFormat, sampleRate);
+//    if (error) {
+//        printf("DoConvertFile failed! %d\n", (int)error);
+//        flag = NO;
+//    }
+    return flag;
+}
 
 /*
 #pragma mark - Navigation
