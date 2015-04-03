@@ -48,12 +48,11 @@
     
     self.title = @"Menu";
     [self.navigationItem setHidesBackButton:YES];
-    [self checkTodayMobileCheckin];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-//    [self getAppointmentsFromServer];
     self.reportInBtn.enabled = NO;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     __weak DashboardViewController *dashboardVC = self;
@@ -81,7 +80,6 @@
 
 -(void)checkTodayMobileCheckin{
     if ([self.appointmentArray count]) {
-//        NSLog(@"%", self.appointmentArray);
         for (SVAppoinmentinfo *infoObject  in self.appointmentArray) {
             if ([infoObject.appointmentStatus isEqualToString:@"Today"]) {
              self.notificationLbl.text = @"You have check-in for today.";
@@ -94,7 +92,7 @@
 }
 
 
--(void)getAppointmentsFromServer{
+- (void)getAppointmentsFromServer {
     AppDelegate *appDelegateObject = (AppDelegate*) [[UIApplication sharedApplication] delegate];
     SVNetworkApi *networkApi = [[SVNetworkApi alloc] init];
     

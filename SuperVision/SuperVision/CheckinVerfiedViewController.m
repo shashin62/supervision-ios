@@ -28,6 +28,8 @@
     self.btnHome.backgroundColor = [UIColor colorWithRed:0.76 green:0.15 blue:0.2 alpha:1];
     self.title = @"Check In Verified";
     [self doMobileCheckin];
+    
+    self.navigationItem.hidesBackButton = YES;
 }
 
 -(void)doMobileCheckin{

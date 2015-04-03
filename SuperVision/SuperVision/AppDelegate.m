@@ -28,7 +28,11 @@
 //    self.longitude = [NSString stringWithFormat:@"%f", coordinate.longitude];
     [self getLocation];
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0.13 green:0.13 blue:0.13 alpha:1]];
-    [[UINavigationBar appearance] setTranslucent:NO];
+    
+    if([UIDevice currentDevice].systemVersion.floatValue >= 8.0) {
+        [[UINavigationBar appearance] setTranslucent:NO];
+    }
+    
     
     [[UINavigationBar appearance] setTitleTextAttributes:
      [NSDictionary dictionaryWithObjectsAndKeys:
@@ -125,8 +129,8 @@
 -(void) getLocation{
      locationManager = [[CLLocationManager alloc] init];
     locationManager.delegate = self;
-    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    locationManager.distanceFilter = kCLDistanceFilterNone;
+    locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+    locationManager.distanceFilter = 100;
     
     
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0 &&
@@ -144,15 +148,19 @@
   
     self.latitude = [NSString stringWithFormat:@"%f", locationManager.location.coordinate.latitude];
     self.longitude = [NSString stringWithFormat:@"%f", locationManager.location.coordinate.longitude];
+    NSLog(@"self.latitude  %@", self.latitude);
+    NSLog(@"self.longitude  %@", self.longitude);
+
     
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
-//    NSLog(@"OldLocation %f %f", oldLocation.coordinate.latitude, oldLocation.coordinate.longitude);
-//    NSLog(@"NewLocation %f %f", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
+    NSLog(@"OldLocation %f %f", oldLocation.coordinate.latitude, oldLocation.coordinate.longitude);
+    NSLog(@"NewLocation %f %f", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
     self.latitude = [NSString stringWithFormat:@"%f", locationManager.location.coordinate.latitude];
     self.longitude = [NSString stringWithFormat:@"%f", locationManager.location.coordinate.longitude];
-    [locationManager stopUpdatingLocation];
+   
+//    [locationManager stopUpdatingLocation];
 }
 
 

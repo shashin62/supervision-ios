@@ -254,6 +254,9 @@
     CFStringRef extension = (__bridge CFStringRef)[path pathExtension];
     CFStringRef UTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, extension, NULL);
     assert(UTI != NULL);
+    if ([[path pathExtension] isEqualToString:@"caf"]) {
+        return @"audio/x-caf";
+    }
     
     NSString *mimetype = CFBridgingRelease(UTTypeCopyPreferredTagWithClass(UTI, kUTTagClassMIMEType));
     assert(mimetype != NULL);

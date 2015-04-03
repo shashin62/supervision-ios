@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *continueBtn;
 
 @property (weak, nonatomic) IBOutlet UITextField *cvvTxt;
+@property (nonatomic, retain) UIView *inputAccView;
 
 - (IBAction)doContinue:(id)sender;
 - (IBAction)selectPaymentMethod:(id)sender;
@@ -123,5 +124,37 @@
 }
 
 
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField{
+    // Call the createInputAccessoryView method we created earlier.
+    // By doing that we will prepare the inputAccView.
+    [self createInputAccessoryView];
+    // Now add the view as an input accessory view to the selected textfield.
+    [textField setInputAccessoryView:self.inputAccView];
+    // Set the active field. We' ll need that if we want to move properly
+    // between our textfields.
+}
+
+-(void)createInputAccessoryView{
+    self.inputAccView = [[UIView alloc] initWithFrame:CGRectMake(10.0, 0.0, self.view.frame.size.width, 40.0)];
+    [self.inputAccView setBackgroundColor:[UIColor lightGrayColor]];
+    [self.inputAccView setAlpha: 0.9];
+    
+    UIButton *btnDone = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btnDone setFrame:CGRectMake(self.view.frame.size.width - 80.0, 0.0f, 80.0f, 40.0f)];
+    [btnDone setTitle:@"Done" forState:UIControlStateNormal];
+    [btnDone setBackgroundColor:[UIColor clearColor]];
+    [btnDone setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [btnDone addTarget:self action:@selector(doneTyping) forControlEvents:UIControlEventTouchUpInside];
+    // Now that our buttons are ready we just have to add them to our view.
+    [self.inputAccView addSubview:btnDone];
+}
+
+
+-(void)doneTyping
+{
+    [self.amountTxt resignFirstResponder];
+    [self.cvvTxt resignFirstResponder];
+}
 
 @end

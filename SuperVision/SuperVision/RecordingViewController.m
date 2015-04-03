@@ -26,13 +26,13 @@
     NSMutableDictionary *recordSetting;
     NSMutableDictionary *editedObject;
     NSString *recorderFilePath;
-    NSString *mp3AudioFilePath;
+//    NSString *mp3AudioFilePath;
     AVAudioRecorder *recorder;
     SystemSoundID soundID;
     AVAudioSession *audioSession ;
 
 }
-@property (nonatomic) TPAACAudioConverter *audioConverter;
+//@property (nonatomic) TPAACAudioConverter *audioConverter;
 @property (weak, nonatomic) IBOutlet UIButton *btnRecord;
 @property (weak, nonatomic) IBOutlet UIView *topView;
 @property (weak, nonatomic) IBOutlet UILabel *lblRecordTextMessage;
@@ -55,8 +55,8 @@
     
     
     
-    recorderFilePath = [NSString stringWithFormat:@"%@/audio.aiff", DOCUMENTS_FOLDER];
-    mp3AudioFilePath = [NSString stringWithFormat:@"%@/audio.m4a", DOCUMENTS_FOLDER];
+    recorderFilePath = [NSString stringWithFormat:@"%@/audio.m4a", DOCUMENTS_FOLDER];
+//    mp3AudioFilePath = [NSString stringWithFormat:@"%@/audio.m4a", DOCUMENTS_FOLDER];
     
     [self.btnRecord addTarget:self action:@selector(startRecording:) forControlEvents:UIControlEventTouchUpInside];
     [self.btnRecord setTitle:@"Start Recording" forState:UIControlStateNormal];
@@ -85,7 +85,7 @@
 - (void)audioRecorderDidFinishRecording:(AVAudioRecorder *) aRecorder successfully:(BOOL)flag
 {
     
-    NSLog (@"audioRecorderDidFinishRecording:successfully:");
+//    NSLog (@"audioRecorderDidFinishRecording:successfully:");
     // your actions here
     
 }
@@ -98,7 +98,7 @@
     
      audioSession = [AVAudioSession sharedInstance];
     NSError *err = nil;
-    [audioSession setCategory :AVAudioSessionCategoryPlayAndRecord error:&err];
+    [audioSession setCategory :AVAudioSessionCategoryRecord error:&err];
     if(err){
         [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Recording audio", @"")
                                     message:NSLocalizedString(@"Couldn't record audio: Not supported on this device", @"")
@@ -127,17 +127,25 @@
     {
         NSFileManager *fm = [NSFileManager defaultManager];
         [fm removeItemAtPath:[url path] error:&err];
+//        [fm removeItemAtPath:mp3AudioFilePath error:&err];
     }
     err = nil;
     
     recordSetting = [[NSMutableDictionary alloc] init];
-    [recordSetting setValue :[NSNumber numberWithInt:kAudioFormatLinearPCM] forKey:AVFormatIDKey];
-    [recordSetting setValue:[NSNumber numberWithFloat:44100.0] forKey:AVSampleRateKey];
-    [recordSetting setValue:[NSNumber numberWithInt: 2] forKey:AVNumberOfChannelsKey];
+//    [recordSetting setValue :[NSNumber numberWithInt:kAudioFormatLinearPCM] forKey:AVFormatIDKey];
+//    [recordSetting setValue:[NSNumber numberWithFloat:44100.0] forKey:AVSampleRateKey];
+//    [recordSetting setValue:[NSNumber numberWithInt: 2] forKey:AVNumberOfChannelsKey];
+//    
+//    [recordSetting setValue :[NSNumber numberWithInt:16] forKey:AVLinearPCMBitDepthKey];
+//    [recordSetting setValue :[NSNumber numberWithBool:NO] forKey:AVLinearPCMIsBigEndianKey];
+//    [recordSetting setValue :[NSNumber numberWithBool:NO] forKey:AVLinearPCMIsFloatKey];
     
-    [recordSetting setValue :[NSNumber numberWithInt:16] forKey:AVLinearPCMBitDepthKey];
-    [recordSetting setValue :[NSNumber numberWithBool:NO] forKey:AVLinearPCMIsBigEndianKey];
-    [recordSetting setValue :[NSNumber numberWithBool:NO] forKey:AVLinearPCMIsFloatKey];
+    [recordSetting setObject:[NSNumber numberWithInt: kAudioFormatMPEG4AAC] forKey: AVFormatIDKey];
+    [recordSetting setObject:[NSNumber numberWithFloat:16000.0] forKey: AVSampleRateKey];
+    [recordSetting setObject:[NSNumber numberWithInt:1] forKey:AVNumberOfChannelsKey];
+//    [recordSetting setObject:[NSNumber numberWithInt:12800] forKey:AVEncoderBitRateKey];
+//    [recordSetting setObject:[NSNumber numberWithInt:16] forKey:AVLinearPCMBitDepthKey];
+    [recordSetting setObject:[NSNumber numberWithInt: AVAudioQualityMedium] forKey: AVEncoderAudioQualityKey];
     
     recorder = [[ AVAudioRecorder alloc] initWithURL:url settings:recordSetting error:&err];
     if(!recorder){
@@ -196,133 +204,25 @@
     [self.activityIndicatorView stopAnimating];
     [self.recordingLabel setHidden:YES];
     [recorder stop];
+    
+    int flags = AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation;
+    [audioSession setActive:NO withOptions:flags error:nil];
     recorder = nil;
     audioSession = nil;
-  [self convert];
-//    if([self convert])
-    {
-//        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//        SVNetworkApi *networkApi = [[SVNetworkApi alloc] init];
-//        [networkApi uploadAudio:mp3AudioFilePath completionHandler:^(NSString *audioName, NSError *error) {
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                [MBProgressHUD hideHUDForView:self.view animated:YES];
-//                [self.btnRecord setTitle:@"Start Recording" forState:UIControlStateNormal];
-//                [self.btnRecord removeTarget:self action:@selector(stopRecording:) forControlEvents:UIControlEventTouchUpInside];
-//                [self.btnRecord addTarget:self action:@selector(startRecording:) forControlEvents:UIControlEventTouchUpInside];
-//            });
-//            if (error) {
-//                UIAlertView *message=[[UIAlertView alloc]initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"ok" otherButtonTitles: nil];
-//                [message show];
-//            }else if(audioName.length)
-//            {
-//                AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-//                [appDelegate.userInfoChangedRequestParam setObject:audioName forKey:@"CheckInAudioRecordingPath"];
-//                CheckinVerfiedViewController *checkinVerfiedViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CheckinVerfiedViewControllerStoryBoardId"];
-//                [self.navigationController pushViewController:checkinVerfiedViewController animated:YES];
-//            }
-//        }];
-    } // EndIF
-}
-
-- (BOOL)convertAudio{
-    
-    BOOL flag = YES;
-    CFURLRef sourceURL;
-    CFURLRef destinationURL;
-    OSType   outputFormat;
-    Float64  sampleRate;
-    
-    NSArray  *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//    NSString *documentsDirectory = [paths objectAtIndex:0];
     
     
-    sourceURL = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, (CFStringRef)recorderFilePath, kCFURLPOSIXPathStyle, false);
+//  [self convert];
     
-//    mp3AudioFilePath = [[NSString alloc] initWithFormat: @"%@/output1.mp4", documentsDirectory];
-    destinationURL = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, (CFStringRef)mp3AudioFilePath, kCFURLPOSIXPathStyle, false);
     
-    outputFormat = kAudioFormatMPEG4AAC;
-    sampleRate = 44100.0;
     
-//    OSStatus error = DoConvertFile(sourceURL, destinationURL, outputFormat, sampleRate);
-//    if (error) {
-//        printf("DoConvertFile failed! %d\n", (int)error);
-//        flag = NO;
-//    }
-    return flag;
-}
-
-
-- (void)convert {
-    if ( ![TPAACAudioConverter AACConverterAvailable] ) {
-        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Converting audio", @"")
-                                    message:NSLocalizedString(@"Couldn't convert audio: Not supported on this device", @"")
-                                   delegate:nil
-                          cancelButtonTitle:nil
-                          otherButtonTitles:NSLocalizedString(@"OK", @""), nil] show];
-        return;
-    }
     
-    // Register an Audio Session interruption listener, important for AAC conversion
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(audioSessionInterrupted:)
-                                                 name:AVAudioSessionInterruptionNotification
-                                               object:nil];
     
-    // Set up an audio session compatible with AAC conversion.  Note that AAC conversion is incompatible with any session that provides mixing with other device audio.
-    NSError *error = nil;
-    if ( ![[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback
-                                           withOptions:0
-                                                 error:&error] ) {
-        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Converting audio", @"")
-                                    message:[NSString stringWithFormat:NSLocalizedString(@"Couldn't setup audio category: %@", @""), error.localizedDescription]
-                                   delegate:nil
-                          cancelButtonTitle:nil
-                          otherButtonTitles:NSLocalizedString(@"OK", @""), nil] show];
-        [[NSNotificationCenter defaultCenter] removeObserver:self];
-        return;
-    }
     
-    // Activate audio session
-    if ( ![[AVAudioSession sharedInstance] setActive:YES error:NULL] ) {
-        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Converting audio", @"")
-                                    message:[NSString stringWithFormat:NSLocalizedString(@"Couldn't activate audio category: %@", @""), error.localizedDescription]
-                                   delegate:nil
-                          cancelButtonTitle:nil
-                          otherButtonTitles:NSLocalizedString(@"OK", @""), nil] show];
-        [[NSNotificationCenter defaultCenter] removeObserver:self];
-        return;
-        
-    }
-    
-//    NSArray *documentsFolders = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    self.audioConverter = [[TPAACAudioConverter alloc] initWithDelegate:self
-                                                                 source:recorderFilePath
-                                                            destination:mp3AudioFilePath];
-//    ((UIButton*)sender).enabled = NO;
-//    [self.spinner startAnimating];
-//    self.progressView.progress = 0.0;
-//    self.progressView.hidden = NO;
-    [_audioConverter start];
-}
-
-#pragma mark - Audio converter delegate
-
--(void)AACAudioConverter:(TPAACAudioConverter *)converter didMakeProgress:(CGFloat)progress {
-//    self.progressView.progress = progress;
-}
-
--(void)AACAudioConverterDidFinishConversion:(TPAACAudioConverter *)converter {
-    
-//    [self.spinner stopAnimating];
-    
-    self.audioConverter = nil;
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     SVNetworkApi *networkApi = [[SVNetworkApi alloc] init];
-    [networkApi uploadAudio:mp3AudioFilePath completionHandler:^(NSString *audioName, NSError *error) {
+    [networkApi uploadAudio:recorderFilePath completionHandler:^(NSString *audioName, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             [self.btnRecord setTitle:@"Start Recording" forState:UIControlStateNormal];
@@ -343,29 +243,116 @@
     
 }
 
--(void)AACAudioConverter:(TPAACAudioConverter *)converter didFailWithError:(NSError *)error {
-    [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Converting audio", @"")
-                                message:[NSString stringWithFormat:NSLocalizedString(@"Couldn't convert audio: %@", @""), [error localizedDescription]]
-                               delegate:nil
-                      cancelButtonTitle:nil
-                      otherButtonTitles:NSLocalizedString(@"OK", @""), nil] show];
-   
-    self.audioConverter = nil;
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
+//
+//- (void)convert {
+//    if ( ![TPAACAudioConverter AACConverterAvailable] ) {
+//        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Converting audio", @"")
+//                                    message:NSLocalizedString(@"Couldn't convert audio: Not supported on this device", @"")
+//                                   delegate:nil
+//                          cancelButtonTitle:nil
+//                          otherButtonTitles:NSLocalizedString(@"OK", @""), nil] show];
+//        return;
+//    }
+//    
+//    // Register an Audio Session interruption listener, important for AAC conversion
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(audioSessionInterrupted:)
+//                                                 name:AVAudioSessionInterruptionNotification
+//                                               object:nil];
+//    
+//    // Set up an audio session compatible with AAC conversion.  Note that AAC conversion is incompatible with any session that provides mixing with other device audio.
+//    NSError *error = nil;
+//    if ( ![[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback
+//                                           withOptions:0
+//                                                 error:&error] ) {
+//        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Converting audio", @"")
+//                                    message:[NSString stringWithFormat:NSLocalizedString(@"Couldn't setup audio category: %@", @""), error.localizedDescription]
+//                                   delegate:nil
+//                          cancelButtonTitle:nil
+//                          otherButtonTitles:NSLocalizedString(@"OK", @""), nil] show];
+//        [[NSNotificationCenter defaultCenter] removeObserver:self];
+//        return;
+//    }
+//    
+//    // Activate audio session
+//    if ( ![[AVAudioSession sharedInstance] setActive:YES error:NULL] ) {
+//        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Converting audio", @"")
+//                                    message:[NSString stringWithFormat:NSLocalizedString(@"Couldn't activate audio category: %@", @""), error.localizedDescription]
+//                                   delegate:nil
+//                          cancelButtonTitle:nil
+//                          otherButtonTitles:NSLocalizedString(@"OK", @""), nil] show];
+//        [[NSNotificationCenter defaultCenter] removeObserver:self];
+//        return;
+//        
+//    }
+//    
+//    self.audioConverter = [[TPAACAudioConverter alloc] initWithDelegate:self
+//                                                                 source:recorderFilePath
+//                                                            destination:mp3AudioFilePath];
+//
+//    [_audioConverter start];
+//}
+
+#pragma mark - Audio converter delegate
+
+//-(void)AACAudioConverter:(TPAACAudioConverter *)converter didMakeProgress:(CGFloat)progress {
+////    self.progressView.progress = progress;
+//}
+//
+//-(void)AACAudioConverterDidFinishConversion:(TPAACAudioConverter *)converter {
+//    
+////    [self.spinner stopAnimating];
+//    
+//    self.audioConverter = nil;
+//    [[NSNotificationCenter defaultCenter] removeObserver:self];
+//    
+//    
+//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    SVNetworkApi *networkApi = [[SVNetworkApi alloc] init];
+//    [networkApi uploadAudio:mp3AudioFilePath completionHandler:^(NSString *audioName, NSError *error) {
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [MBProgressHUD hideHUDForView:self.view animated:YES];
+//            [self.btnRecord setTitle:@"Start Recording" forState:UIControlStateNormal];
+//            [self.btnRecord removeTarget:self action:@selector(stopRecording:) forControlEvents:UIControlEventTouchUpInside];
+//            [self.btnRecord addTarget:self action:@selector(startRecording:) forControlEvents:UIControlEventTouchUpInside];
+//        });
+//        if (error) {
+//            UIAlertView *message=[[UIAlertView alloc]initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"ok" otherButtonTitles: nil];
+//            [message show];
+//        }else if(audioName.length)
+//        {
+//            AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+//            [appDelegate.userInfoChangedRequestParam setObject:audioName forKey:@"CheckInAudioRecordingPath"];
+//            CheckinVerfiedViewController *checkinVerfiedViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CheckinVerfiedViewControllerStoryBoardId"];
+//            [self.navigationController pushViewController:checkinVerfiedViewController animated:YES];
+//        }
+//    }];
+//    
+//}
+//
+//-(void)AACAudioConverter:(TPAACAudioConverter *)converter didFailWithError:(NSError *)error {
+//    [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Converting audio", @"")
+//                                message:[NSString stringWithFormat:NSLocalizedString(@"Couldn't convert audio: %@", @""), [error localizedDescription]]
+//                               delegate:nil
+//                      cancelButtonTitle:nil
+//                      otherButtonTitles:NSLocalizedString(@"OK", @""), nil] show];
+//   
+//    self.audioConverter = nil;
+//    [[NSNotificationCenter defaultCenter] removeObserver:self];
+//}
 
 #pragma mark - Audio session interruption
 
-- (void)audioSessionInterrupted:(NSNotification*)notification {
-    AVAudioSessionInterruptionType type = [notification.userInfo[AVAudioSessionInterruptionTypeKey] integerValue];
-    
-    if ( type == AVAudioSessionInterruptionTypeEnded) {
-        [[AVAudioSession sharedInstance] setActive:YES error:NULL];
-        if ( _audioConverter ) [_audioConverter resume];
-    } else if ( type == AVAudioSessionInterruptionTypeBegan ) {
-        if ( _audioConverter ) [_audioConverter interrupt];
-    }
-}
+//- (void)audioSessionInterrupted:(NSNotification*)notification {
+//    AVAudioSessionInterruptionType type = [notification.userInfo[AVAudioSessionInterruptionTypeKey] integerValue];
+//    
+//    if ( type == AVAudioSessionInterruptionTypeEnded) {
+//        [[AVAudioSession sharedInstance] setActive:YES error:NULL];
+//        if ( _audioConverter ) [_audioConverter resume];
+//    } else if ( type == AVAudioSessionInterruptionTypeBegan ) {
+//        if ( _audioConverter ) [_audioConverter interrupt];
+//    }
+//}
 /*
 #pragma mark - Navigation
 

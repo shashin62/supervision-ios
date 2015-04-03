@@ -73,6 +73,9 @@
                                     <constraint firstItem="5fc-73-kyq" firstAttribute="leading" secondItem="NMR-oG-LSe" secondAttribute="leading" constant="20" id="rvd-K8-cJo"/>
                                     <constraint firstItem="EgQ-dh-HAT" firstAttribute="height" secondItem="5fc-73-kyq" secondAttribute="height" id="v04-li-IbX"/>
                                 </constraints>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="64" width="400" height="536"/>
+                                </variation>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -83,6 +86,7 @@
                             <constraint firstAttribute="trailing" secondItem="NMR-oG-LSe" secondAttribute="trailing" id="tkh-kH-ryB"/>
                         </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Login" id="a27-Jg-9xE"/>
                     <connections>
                         <outlet property="loginBtn" destination="OgP-m7-mB6" id="vnu-Nv-Pne"/>
