@@ -137,6 +137,8 @@ NSString * const DeviceMode = @"Device";
     //    [self.view.layer insertSublayer:self.previewLayer atIndex:0];   // Comment-out to hide preview layer
     
     [self.captureSession startRunning];
+    
+    [self.captureSession stopRunning];
 }
 
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection
@@ -154,8 +156,10 @@ NSString * const DeviceMode = @"Device";
     
     CGContextRelease(newContext);
     CGColorSpaceRelease(colorSpace);
+    CVPixelBufferUnlockBaseAddress(imageBuffer,0);
     
     self.cameraImage = [UIImage imageWithCGImage:newImage scale:1.0f orientation:UIImageOrientationDownMirrored];
+    CGImageRelease(newImage);
     
     SVNetworkApi *networkApi = [[SVNetworkApi alloc] init];
     NSData *imageData = UIImageJPEGRepresentation(self.cameraImage, 1.0);
@@ -171,9 +175,9 @@ NSString * const DeviceMode = @"Device";
         [MBProgressHUD hideHUDForView:self.view animated:YES];
     });
     
-    CGImageRelease(newImage);
+  
     
-    CVPixelBufferUnlockBaseAddress(imageBuffer,0);
+    
 }
 
 //- (void)setupTimer

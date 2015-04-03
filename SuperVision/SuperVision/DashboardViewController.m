@@ -54,7 +54,13 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     self.reportInBtn.enabled = NO;
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    });
+    
+    
+   
     __weak DashboardViewController *dashboardVC = self;
     
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);

@@ -26,7 +26,7 @@
 //    CLLocationCoordinate2D coordinate = [self getLocation];
 //    self.latitude = [NSString stringWithFormat:@"%f", coordinate.latitude];
 //    self.longitude = [NSString stringWithFormat:@"%f", coordinate.longitude];
-    [self getLocation];
+//    [self getLocation];
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0.13 green:0.13 blue:0.13 alpha:1]];
     
     if([UIDevice currentDevice].systemVersion.floatValue >= 8.0) {
