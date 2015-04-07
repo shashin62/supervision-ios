@@ -109,8 +109,8 @@
 
 -(void)uploadImage:(NSData *)imageData completionHandler:(void (^)(NSString *, NSError *))completionBlock{
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:kPictureUploadUrl]];
-    [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
-    [request setHTTPShouldHandleCookies:NO];
+//    [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
+//    [request setHTTPShouldHandleCookies:NO];
     [request setTimeoutInterval:60];
     [request setHTTPMethod:@"POST"];
     NSString *boundary = @"unique-consistent-string";
@@ -130,7 +130,7 @@
     if (imageData) {
         [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
         [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=%@; filename=imageName.jpg\r\n", @"imageFormKey"] dataUsingEncoding:NSUTF8StringEncoding]];
-        [body appendData:[@"Content-Type: image/jpeg\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[@"Content-Type: image/png\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
         [body appendData:imageData];
         [body appendData:[[NSString stringWithFormat:@"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
     }
@@ -149,8 +149,10 @@
         NSLog(@"Image Name is %@",results[@"ImageName"]);
             completionBlock(results[@"ImageName"], nil);
         }
-    else
+        else{
             completionBlock(nil, error);
+        }
+        
     }];
 }
 

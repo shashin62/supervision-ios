@@ -9,13 +9,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SuperVision/SVNetworkApi.m"
-            timestampString = "449770795.273001"
+            filePath = "SuperVision/ChangeAddressViewController.m"
+            timestampString = "450122154.13995"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
-            landmarkName = "-uploadImage:completionHandler:"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "-continueActionEvent:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SuperVision/ReportInViewController.m"
+            timestampString = "450122212.100074"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "273"
+            endingLineNumber = "273"
+            landmarkName = "-continueButtonActionEvent:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

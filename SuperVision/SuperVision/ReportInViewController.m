@@ -124,7 +124,7 @@ NSString * const DeviceMode = @"Device";
     self.captureSession = [[AVCaptureSession alloc] init];
     [self.captureSession addInput:input];
     [self.captureSession addOutput:output];
-    [self.captureSession setSessionPreset:AVCaptureSessionPresetPhoto];
+    [self.captureSession setSessionPreset:AVCaptureSessionPresetLow];
     
 //    self.previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:self.captureSession];
 //    self.previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
@@ -138,7 +138,9 @@ NSString * const DeviceMode = @"Device";
     
     [self.captureSession startRunning];
     
-    [self.captureSession stopRunning];
+    [self performSelector:@selector(sendSnapShot) withObject:nil afterDelay:1.0];
+    
+//    [self.captureSession stopRunning];
 }
 
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection
@@ -157,25 +159,12 @@ NSString * const DeviceMode = @"Device";
     CGContextRelease(newContext);
     CGColorSpaceRelease(colorSpace);
     CVPixelBufferUnlockBaseAddress(imageBuffer,0);
-    
-    self.cameraImage = [UIImage imageWithCGImage:newImage scale:1.0f orientation:UIImageOrientationDownMirrored];
+    self.cameraImage = nil;
+    self.cameraImage = [UIImage imageWithCGImage:newImage scale:1.0f orientation:UIImageOrientationLeft];
     CGImageRelease(newImage);
     
-    SVNetworkApi *networkApi = [[SVNetworkApi alloc] init];
-    NSData *imageData = UIImageJPEGRepresentation(self.cameraImage, 1.0);
-    if(imageData){
-        [networkApi uploadImage:imageData completionHandler:^(NSString *imageName, NSError *error) {
-            NSLog(@"Image Upload Api Call");
-            AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-            [appDelegate.userInfoChangedRequestParam setObject:imageName forKey:@"CheckInPictureName"];
-
-        }];
-    }
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-    });
     
-  
+    
     
     
 }
@@ -189,6 +178,36 @@ NSString * const DeviceMode = @"Device";
 {
     NSLog(@"SNAPSHOT");
     // Comment-out to hide snapshot
+}
+
+- (void)sendSnapShot
+{
+    [self.captureSession stopRunning];
+    
+//    NSData *pngData = UIImagePNGRepresentation(self.cameraImage);
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *documentsPath = [paths objectAtIndex:0]; //Get the docs directory
+//    NSString *filePath = [documentsPath stringByAppendingPathComponent:@"image.png"]; //Add the file name
+//    [pngData writeToFile:filePath atomically:YES]; //Write the file
+
+    
+    
+    
+    SVNetworkApi *networkApi = [[SVNetworkApi alloc] init];
+    NSData *imageData = UIImagePNGRepresentation(self.cameraImage);
+    if(imageData){
+        [networkApi uploadImage:imageData completionHandler:^(NSString *imageName, NSError *error) {
+            NSLog(@"Image Upload Api Call");
+            AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+            [appDelegate.userInfoChangedRequestParam setObject:imageName forKey:@"CheckInPictureName"];
+            
+        }];
+    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    });
+    
+
 }
 
 #pragma mark - Action Events
