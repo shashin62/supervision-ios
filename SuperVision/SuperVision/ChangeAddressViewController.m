@@ -45,6 +45,19 @@
 
 -(IBAction)continueActionEvent:(id)sender{
     if([self validateTextField]){
+        
+        if (![self validateZip]) {
+            UIAlertView *message = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Zip must be 5 character long!!" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles: nil];
+            [message show];
+            return;
+        }
+        
+        if (![self validatePhone]) {
+            UIAlertView *message = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Phone must be 10 character long!!" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles: nil];
+            [message show];
+            return;
+        }
+        
         NSString *addressString1 = [self.txtAddress1.text stringByTrimmingCharactersInSet:
                                     [NSCharacterSet whitespaceCharacterSet]];
         NSString *addressString2 = [self.txtAddress2.text stringByTrimmingCharactersInSet:
@@ -56,6 +69,19 @@
         NSString *stateString =[self.txtState.text stringByTrimmingCharactersInSet:
                                 [NSCharacterSet whitespaceCharacterSet]];
         NSString *zipString = [self.txtZip.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
+        
+        
+        if (![self isNumeric:zipString]) {
+            UIAlertView *message = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Zip must be number!!" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles: nil];
+            [message show];
+            return;
+        }
+        
+        if (![self isNumeric:phoneString]) {
+            UIAlertView *message = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Phone must be number!!" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles: nil];
+            [message show];
+            return;
+        }
         
         AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
             [appDelegate.userInfoChangedRequestParam setObject:addressString1 forKey:@"HomeAddress1"];
@@ -89,8 +115,8 @@
 -(BOOL)validateTextField{
     NSString *addressString1 = [self.txtAddress1.text stringByTrimmingCharactersInSet:
                                 [NSCharacterSet whitespaceCharacterSet]];
-    NSString *addressString2 = [self.txtAddress2.text stringByTrimmingCharactersInSet:
-                                [NSCharacterSet whitespaceCharacterSet]];
+//    NSString *addressString2 = [self.txtAddress2.text stringByTrimmingCharactersInSet:
+//                                [NSCharacterSet whitespaceCharacterSet]];
     NSString *cityString = [self.txtCity.text stringByTrimmingCharactersInSet:
                                               [NSCharacterSet whitespaceCharacterSet]];
     NSString *phoneString =[self.txtPhone.text stringByTrimmingCharactersInSet:
@@ -100,10 +126,38 @@
     NSString *zipString = [self.txtZip.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
 
     BOOL isValid = NO;
-    if([cityString length] && [phoneString length] && [stateString length] && [zipString length] && ([addressString1 length] || [addressString2 length])){
+    if([cityString length] && [phoneString length] && [stateString length] && [zipString length] && [addressString1 length]){
         isValid = YES;
     }
     return isValid;
+}
+
+-(BOOL)isNumeric:(NSString*)inputString{
+    BOOL isValid = NO;
+    NSCharacterSet *alphaNumbersSet = [NSCharacterSet decimalDigitCharacterSet];
+    NSCharacterSet *stringSet = [NSCharacterSet characterSetWithCharactersInString:inputString];
+    isValid = [alphaNumbersSet isSupersetOfSet:stringSet];
+    return isValid;
+}
+
+
+- (BOOL)validateZip
+{
+    NSString *zipString = [self.txtZip.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
+    if ([zipString length] == 5) {
+        return YES;
+    }
+    return NO;
+}
+
+- (BOOL)validatePhone
+{
+    NSString *phoneString =[self.txtPhone.text stringByTrimmingCharactersInSet:
+                            [NSCharacterSet whitespaceCharacterSet]];
+    if ([phoneString length] == 10) {
+        return YES;
+    }
+    return NO;
 }
 
 

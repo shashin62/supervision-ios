@@ -39,6 +39,12 @@ NSString * const DeviceMode = @"Device";
 @property (nonatomic) BOOL isPaymentChanged;
 @property (nonatomic) BOOL isScheduleAppointmentChanged;
 
+@property (readwrite) NSInteger isAddressChangedChecked;
+@property (readwrite) NSInteger isJobChangedChecked;
+@property (readwrite) NSInteger isArrestedChangedChecked;
+@property (readwrite) NSInteger isPaymentChangedChecked;
+@property (readwrite) NSInteger isScheduleAppointmentChangedChecked;
+
 @property (weak, nonatomic) IBOutlet UIButton *yesAddressChangeBtn;
 @property (weak, nonatomic) IBOutlet UIButton *noAddressChangeBtn;
 @property (weak, nonatomic) IBOutlet UIButton *yesJobChangeBtn;
@@ -79,6 +85,12 @@ NSString * const DeviceMode = @"Device";
 
     if([DeviceMode isEqualToString:@"Device"])
         [self takeScreenShotAndSend];
+    
+    self.isPaymentChangedChecked = 0;
+    self.isAddressChangedChecked = 0;
+    self.isJobChangedChecked = 0;
+    self.isArrestedChangedChecked = 0;
+    self.isScheduleAppointmentChangedChecked = 0;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -332,12 +344,14 @@ NSString * const DeviceMode = @"Device";
 #pragma mark - Action Events
 
 -(IBAction)setAddressChangeYES:(id)sender{
+    self.isAddressChangedChecked = 1;
     self.isAddressChanged = YES;
     [self.yesAddressChangeBtn setSelected:YES];
     [self.noAddressChangeBtn setSelected:NO];
 }
 -(IBAction)setAddressChangeNO:(id)sender{
     self.isAddressChanged = NO;
+    self.isAddressChangedChecked = 1;
     [self.yesAddressChangeBtn setSelected:NO];
     [self.noAddressChangeBtn setSelected:YES];
 
@@ -345,49 +359,71 @@ NSString * const DeviceMode = @"Device";
 
 -(IBAction)setJobChangeYES:(id)sender{
     self.isJobChanged = YES;
+    self.isJobChangedChecked = 1;
     [self.yesJobChangeBtn setSelected:YES];
     [self.noJobChangeBtn setSelected:NO];
 }
 -(IBAction)setJobChangeNO:(id)sender{
     self.isJobChanged = NO;
+    self.isJobChangedChecked = 1;
     [self.yesJobChangeBtn setSelected:NO];
     [self.noJobChangeBtn setSelected:YES];
 }
 
 -(IBAction)setArrestedChangeYES:(id)sender{
     self.isArrestedChanged = YES;
+    self.isArrestedChangedChecked = 1;
     [self.yesArrestedChangeBtn setSelected:YES];
     [self.noArrestedChangeBtn setSelected:NO];
 }
 -(IBAction)setArrestedChangeNO:(id)sender{
     self.isArrestedChanged = NO;
+    self.isArrestedChangedChecked = 1;
     [self.yesArrestedChangeBtn setSelected:NO];
     [self.noArrestedChangeBtn setSelected:YES];
 }
 
 -(IBAction)setScheduleAppointmentChangeYES:(id)sender{
     self.isScheduleAppointmentChanged = YES;
+    self.isScheduleAppointmentChangedChecked = 1;
     [self.yesScheduleAppointmentBtn setSelected:YES];
     [self.noScheduleAppointmentBtn setSelected:NO];
 }
 -(IBAction)setScheduleAppointmentChangeNO:(id)sender{
     self.isScheduleAppointmentChanged = NO;
+    self.isScheduleAppointmentChangedChecked = 1;
     [self.yesScheduleAppointmentBtn setSelected:NO];
     [self.noScheduleAppointmentBtn setSelected:YES];
 }
 
 -(IBAction)setPaymentChangeYES:(id)sender{
     self.isPaymentChanged = YES;
+    self.isPaymentChangedChecked = 1;
     [self.yesPaymentChangeBtn setSelected:YES];
     [self.noPaymentChangeBtn setSelected:NO];
 }
 -(IBAction)setPaymentChangeNO:(id)sender{
     self.isPaymentChanged = NO;
+    self.isPaymentChangedChecked = 1;
     [self.yesPaymentChangeBtn setSelected:NO];
     [self.noPaymentChangeBtn setSelected:YES];
 }
 
+- (BOOL)validation
+{
+    if (self.isAddressChangedChecked == 1 && self.isArrestedChangedChecked == 1 && self.isScheduleAppointmentChangedChecked == 1 && self.isPaymentChangedChecked == 1 && self.isJobChangedChecked == 1) {
+        return YES;
+    }
+    return NO;
+}
+
 -(IBAction)continueButtonActionEvent:(id)sender{
+    
+    if (![self validation]) {
+        UIAlertView *message = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Please mark all checkbox" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles: nil];
+        [message show];
+        return;
+    }
     
      AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     if(self.isAddressChanged)
