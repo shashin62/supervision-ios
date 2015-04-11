@@ -111,7 +111,7 @@
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:kPictureUploadUrl]];
 //    [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
 //    [request setHTTPShouldHandleCookies:NO];
-    [request setTimeoutInterval:60];
+    [request setTimeoutInterval:180];
     [request setHTTPMethod:@"POST"];
     NSString *boundary = @"unique-consistent-string";
     // set Content-Type in HTTP header
@@ -162,7 +162,7 @@
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:kAudioUrl]];
     [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
     [request setHTTPShouldHandleCookies:NO];
-    [request setTimeoutInterval:60];
+    [request setTimeoutInterval:180];
     [request setHTTPMethod:@"POST"];
     NSString *boundary = @"unique-consistent-string";
     // set Content-Type in HTTP header
