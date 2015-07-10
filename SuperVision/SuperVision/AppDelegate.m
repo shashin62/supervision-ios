@@ -3,7 +3,7 @@
 //  SuperVision
 //
 //  Created by Ashish ojha on 28/02/15.
-//  Copyright (c) 2015 Ashish ojha. All rights reserved.
+//  Copyright (c) 2015 SuperVision. All rights reserved.
 //
 
 #import "AppDelegate.h"
@@ -148,15 +148,13 @@
   
     self.latitude = [NSString stringWithFormat:@"%f", locationManager.location.coordinate.latitude];
     self.longitude = [NSString stringWithFormat:@"%f", locationManager.location.coordinate.longitude];
-    NSLog(@"self.latitude  %@", self.latitude);
-    NSLog(@"self.longitude  %@", self.longitude);
+   
 
     
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
-    NSLog(@"OldLocation %f %f", oldLocation.coordinate.latitude, oldLocation.coordinate.longitude);
-    NSLog(@"NewLocation %f %f", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
+   
     self.latitude = [NSString stringWithFormat:@"%f", locationManager.location.coordinate.latitude];
     self.longitude = [NSString stringWithFormat:@"%f", locationManager.location.coordinate.longitude];
    

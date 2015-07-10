@@ -3,7 +3,7 @@
 //  SuperVision
 //
 //  Created by Sachin Soni on 04/03/15.
-//  Copyright (c) 2015 Ashish ojha. All rights reserved.
+//  Copyright (c) 2015 SuperVision. All rights reserved.
 //
 
 #import "SVNetworkApi.h"
@@ -38,7 +38,7 @@
         }
         
         NSDictionary* results = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-        NSLog(@"jsonReturn %@",results);
+//        NSLog(@"jsonReturn %@",results);
         if(results){
             SVLoginResponse *loginResponse = [[SVLoginResponse alloc] initWithValues:results];
             completionBlock(loginResponse, nil);
@@ -93,7 +93,7 @@
     [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[postdata length]] forHTTPHeaderField:@"Content-Length"];
     [request setHTTPBody: postdata];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-        NSLog(@"Mobile Check In  response:%@ \nData:%@ \nerror:%@", response, [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding], error);
+//        NSLog(@"Mobile Check In  response:%@ \nData:%@ \nerror:%@", response, [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding], error);
         if(data){
             NSString *IsSuccessStatusCodeString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
             NSRange range = [IsSuccessStatusCodeString rangeOfString:@"true"];
@@ -142,11 +142,11 @@
     NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[body length]];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-        NSLog(@"imgUpload response:%@ \nData:%@ \nerror:%@", response, [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding], error);
+//        NSLog(@"imgUpload response:%@ \nData:%@ \nerror:%@", response, [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding], error);
         if(response){
         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
         NSDictionary* results = [httpResponse allHeaderFields];
-        NSLog(@"Image Name is %@",results[@"ImageName"]);
+//        NSLog(@"Image Name is %@",results[@"ImageName"]);
             completionBlock(results[@"ImageName"], nil);
         }
         else{
@@ -176,11 +176,11 @@
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-        NSLog(@"Audio upload response:%@ \nData:%@ \nerror:%@", response, [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding], error);
+//        NSLog(@"Audio upload response:%@ \nData:%@ \nerror:%@", response, [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding], error);
         if(response){
             NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
             NSDictionary* results = [httpResponse allHeaderFields];
-            NSLog(@"Image Name is %@",results[@"AudioName"]);
+//            NSLog(@"Image Name is %@",results[@"AudioName"]);
             completionBlock(results[@"AudioName"], nil);
         }
         else

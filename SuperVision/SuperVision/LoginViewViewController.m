@@ -3,7 +3,7 @@
 //  SuperVision
 //
 //  Created by Ashish ojha on 28/02/15.
-//  Copyright (c) 2015 Ashish ojha. All rights reserved.
+//  Copyright (c) 2015 SuperVision. All rights reserved.
 //
 
 #import "LoginViewViewController.h"
@@ -92,18 +92,20 @@
         if (error) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
+                UIAlertView *message=[[UIAlertView alloc]initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"ok" otherButtonTitles: nil];
+                [message show];
             });
-            UIAlertView *message=[[UIAlertView alloc]initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"ok" otherButtonTitles: nil];
-            [message show];
+            
         }else{
             
             if([output.uId isEqualToString:@"0"] || [output.chavi isEqualToString:@"No"])
             {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [MBProgressHUD hideHUDForView:self.view animated:YES];
+                    UIAlertView *message = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Invalid Username or Password" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles: nil];
+                    [message show];
                 });
-                UIAlertView *message = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Invalid Username or Password" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles: nil];
-                [message show];
+                
             }else{
             AppDelegate *appDelegateObject = (AppDelegate*) [[UIApplication sharedApplication] delegate];
             [appDelegateObject.userInfo setUId:output.uId];

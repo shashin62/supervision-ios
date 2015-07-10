@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		B95F76C11AC48355005FE2DE /* RecordingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B95F76C01AC48355005FE2DE /* RecordingViewController.m */; };
-		B96774EC1AC5B57B00FBE415 /* TPAACAudioConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = B96774EB1AC5B57B00FBE415 /* TPAACAudioConverter.m */; };
 		B98323881AA23F6B00770625 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B98323871AA23F6B00770625 /* main.m */; };
 		B983238B1AA23F6B00770625 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B983238A1AA23F6B00770625 /* AppDelegate.m */; };
 		B98323911AA23F6B00770625 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B983238F1AA23F6B00770625 /* Main.storyboard */; };
@@ -73,8 +72,8 @@
 
 /* Begin PBXFileReference section */
 		B95F76C01AC48355005FE2DE /* RecordingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordingViewController.m; sourceTree = "<group>"; };
-		B96774EA1AC5B57B00FBE415 /* TPAACAudioConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPAACAudioConverter.h; sourceTree = "<group>"; };
-		B96774EB1AC5B57B00FBE415 /* TPAACAudioConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPAACAudioConverter.m; sourceTree = "<group>"; };
+		B97EC4CA1B45947B00833886 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
+		B97EC4CB1B45947B00833886 /* iTunesArtwork@2x */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iTunesArtwork@2x"; sourceTree = "<group>"; };
 		B98323821AA23F6B00770625 /* SuperVision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperVision.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B98323861AA23F6B00770625 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B98323871AA23F6B00770625 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -178,22 +177,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B95DFEE21AAC763500EEE565 /* Picker */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Picker;
-			sourceTree = "<group>";
-		};
-		B95F764E1AC47248005FE2DE /* AudioConverter */ = {
-			isa = PBXGroup;
-			children = (
-				B96774EA1AC5B57B00FBE415 /* TPAACAudioConverter.h */,
-				B96774EB1AC5B57B00FBE415 /* TPAACAudioConverter.m */,
-			);
-			name = AudioConverter;
-			sourceTree = "<group>";
-		};
 		B98323791AA23F6B00770625 = {
 			isa = PBXGroup;
 			children = (
@@ -222,8 +205,6 @@
 		B98323841AA23F6B00770625 /* SuperVision */ = {
 			isa = PBXGroup;
 			children = (
-				B95F764E1AC47248005FE2DE /* AudioConverter */,
-				B95DFEE21AAC763500EEE565 /* Picker */,
 				FB4417701AA8C8D000E1AC7B /* TableCell */,
 				FBB17A8B1AA6E1790016BF5D /* APIClasses */,
 				B98323891AA23F6B00770625 /* AppDelegate.h */,
@@ -250,6 +231,8 @@
 				FB1783AA1AAE1A20000B9E81 /* ChangeEmployerAddressViewController.m */,
 				B983238F1AA23F6B00770625 /* Main.storyboard */,
 				B98323921AA23F6B00770625 /* Images.xcassets */,
+				B97EC4CA1B45947B00833886 /* iTunesArtwork */,
+				B97EC4CB1B45947B00833886 /* iTunesArtwork@2x */,
 				B98323941AA23F6B00770625 /* LaunchScreen.xib */,
 				B98323851AA23F6B00770625 /* Supporting Files */,
 			);
@@ -401,6 +384,7 @@
 				TargetAttributes = {
 					B98323811AA23F6B00770625 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = NZ4L7J32H2;
 					};
 					B983239A1AA23F6B00770625 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -489,7 +473,6 @@
 				FB1783AB1AAE1A20000B9E81 /* ChangeEmployerAddressViewController.m in Sources */,
 				FB1783A81AAE1A09000B9E81 /* ChangeAddressViewController.m in Sources */,
 				FB1BCA6E1AA987E1001BC8EC /* ReportInViewController.m in Sources */,
-				B96774EC1AC5B57B00FBE415 /* TPAACAudioConverter.m in Sources */,
 				FB29BC951AAB0DC000EB5779 /* SVUtility.m in Sources */,
 				B9F3CF3F1ABBF246002040F4 /* TPKeyboardAvoidingTableView.m in Sources */,
 				B9A69DD91AA2F95C0058E701 /* PaymentsViewController.m in Sources */,
@@ -552,8 +535,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Uttam Shah (HY68U46N47)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Uttam Shah (HY68U46N47)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Mike Popplewell (NZ4L7J32H2)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Mike Popplewell (NZ4L7J32H2)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -574,7 +557,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "1ce049e3-ccbe-43de-b98a-5ee713651677";
+				PROVISIONING_PROFILE = "15074f91-fb10-448b-8ebe-a9f185ff510c";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -596,8 +579,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Goldpost Technologies Inc (VK6Z4345N2)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Goldpost Technologies Inc (VK6Z4345N2)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Mike Popplewell (NZ4L7J32H2)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Mike Popplewell (NZ4L7J32H2)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -611,7 +594,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "69974994-5437-46ea-bd20-dd331d66b6ca";
+				PROVISIONING_PROFILE = "15074f91-fb10-448b-8ebe-a9f185ff510c";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -622,14 +605,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Uttam Shah (HY68U46N47)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Mike Popplewell (NZ4L7J32H2)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Mike Popplewell (NZ4L7J32H2)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_INPUT_FILETYPE = automatic;
 				INFOPLIST_FILE = SuperVision/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1ce049e3-ccbe-43de-b98a-5ee713651677";
+				PROVISIONING_PROFILE = "15074f91-fb10-448b-8ebe-a9f185ff510c";
 			};
 			name = Debug;
 		};
@@ -638,14 +622,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Goldpost Technologies Inc (VK6Z4345N2)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Mike Popplewell (NZ4L7J32H2)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Mike Popplewell (NZ4L7J32H2)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_INPUT_FILETYPE = automatic;
 				INFOPLIST_FILE = SuperVision/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "69974994-5437-46ea-bd20-dd331d66b6ca";
+				PROVISIONING_PROFILE = "15074f91-fb10-448b-8ebe-a9f185ff510c";
 			};
 			name = Release;
 		};

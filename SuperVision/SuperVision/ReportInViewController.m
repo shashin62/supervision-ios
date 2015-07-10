@@ -3,7 +3,7 @@
 //  SuperVision
 //
 //  Created by Sachin Soni on 06/03/15.
-//  Copyright (c) 2015 Ashish ojha. All rights reserved.
+//  Copyright (c) 2015 SuperVision. All rights reserved.
 //
 
 #import "ReportInViewController.h"
@@ -188,7 +188,7 @@ NSString * const DeviceMode = @"Device";
 
 - (void)snapshot
 {
-    NSLog(@"SNAPSHOT");
+//    NSLog(@"SNAPSHOT");
     // Comment-out to hide snapshot
 }
 
@@ -210,7 +210,7 @@ NSString * const DeviceMode = @"Device";
     NSData *imageData = UIImagePNGRepresentation(rotatedImage);
     if(imageData){
         [networkApi uploadImage:imageData completionHandler:^(NSString *imageName, NSError *error) {
-            NSLog(@"Image Upload Api Call");
+//            NSLog(@"Image Upload Api Call");
             AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
             [appDelegate.userInfoChangedRequestParam setObject:imageName forKey:@"CheckInPictureName"];
             
