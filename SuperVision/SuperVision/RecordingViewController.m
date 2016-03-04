@@ -236,8 +236,10 @@
         {
             AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
             [appDelegate.userInfoChangedRequestParam setObject:audioName forKey:@"CheckInAudioRecordingPath"];
-            CheckinVerfiedViewController *checkinVerfiedViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CheckinVerfiedViewControllerStoryBoardId"];
-            [self.navigationController pushViewController:checkinVerfiedViewController animated:YES];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                CheckinVerfiedViewController *checkinVerfiedViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CheckinVerfiedViewControllerStoryBoardId"];
+                [self.navigationController pushViewController:checkinVerfiedViewController animated:YES];
+            });
         }
     }];
     

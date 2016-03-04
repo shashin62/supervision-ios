@@ -26,14 +26,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.appointmentTableView registerNib:[UINib nibWithNibName:@"AppointmentTableViewCell" bundle:nil] forCellReuseIdentifier:@"AppointmentTableViewCell"];
-
     self.appointmentTableView.dataSource = self;
     self.appointmentTableView.delegate = self;
     
     self.title = @"Appoitnments";
 //    [self getAppointmentsFromServer];
     SVAppoinmentinfo *appointmentInfoObject = [self.appointmentArray objectAtIndex:0];
-    self.officerName.text = appointmentInfoObject.appointmentOfficer;
+    self.officerName.text = [NSString stringWithFormat:@"Officer - %@",appointmentInfoObject.appointmentOfficer];
      [self.officerName sizeToFit];
 }
 

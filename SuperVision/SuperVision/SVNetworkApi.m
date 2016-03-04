@@ -12,6 +12,7 @@
 #import "SVConstant.h"
 #import "SVAppoinmentinfo.h"
 #import <MobileCoreServices/MobileCoreServices.h>
+#import <UIKit/UIKit.h>
 
 @interface SVNetworkApi ()
 - (NSMutableDictionary*)getCheckindDictionary:(NSMutableDictionary*)dic;
@@ -21,10 +22,31 @@
 
 -(void) loginWithCompletionBlock :(SVLoginRequest*)body completionHandler: (void (^)(SVLoginResponse* output, NSError* error))completionBlock{
     
-    NSString *loginApiUrl = [NSString stringWithFormat:kLoginUrl,[body userName],[body password]];
+    NSString *loginApiUrl = [NSString stringWithFormat:kLoginUrl];
+    NSString *deviceType = nil;
+    
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        //Device is ipad
+        deviceType = @"iPad";
+    } else {
+        deviceType = @"iPhone";
+    }
+    
+    NSDictionary *bodyDictionary = @{
+                                     @"UserName": [body userName],
+                                     @"Password": [body password],
+                                     @"DeviceType": @"Android"
+                                     };
+    NSError *err;
+    NSData *jsonData = [NSJSONSerialization  dataWithJSONObject:bodyDictionary options:0 error:&err];
+//    NSString *string = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]init];
     [request setURL:[NSURL URLWithString:loginApiUrl]];
-    [request setHTTPMethod:@"GET"];
+    [request addValue:@"application/json" forHTTPHeaderField: @"Content-Type"];
+    [request addValue:@"application/json" forHTTPHeaderField: @"Accept"];
+    //[request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:jsonData];
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         NSError *error;
@@ -175,7 +197,23 @@
     NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[httpBody length]];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *task = [session uploadTaskWithRequest:request
+                                                       fromData:nil
+                                              completionHandler:
+                                  ^(NSData *data, NSURLResponse *response, NSError *error) {
+                                      if (error) {
+                                          completionBlock(nil, error);
+                                      } else {
+                                              NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
+                                              NSDictionary* results = [httpResponse allHeaderFields];
+                                              completionBlock(results[@"AudioName"], nil);
+                                      }
+                                  }];
+    
+    [task resume];
+    
+    /*[NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
 //        NSLog(@"Audio upload response:%@ \nData:%@ \nerror:%@", response, [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding], error);
         if(response){
             NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
@@ -185,7 +223,7 @@
         }
         else
             completionBlock(nil, error);
-    }];
+    }];*/
     
 }
 
